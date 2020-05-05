@@ -1,0 +1,29 @@
+    <div class="row"> 
+        <div class="col-sm-12" class="order_header">
+            <p class="order_text"><b>Оформление заказа</b></p>  
+            <hr  class="order_underline">           
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" class="category_header">
+            <p class="category_text"><b>Выберите категорию</b></p>  
+            <p class="category_info">Можно пропустить данный шаг. Система подберет автоматически из данных о грузе и выборе тарифа.</p>
+        </div>
+    </div>
+
+    <div class="row category_ract" data-bind="foreach: categories">
+        <div class="col-sm-3" data-bind="click:function(){$parent.selected($index());}">
+            <!-- ko component: 'popup' -->
+            <!-- /ko -->   
+        <p><img data-bind="attr :{src: 'images/cat' + 0 + '.png'}">
+            <!--ko text: title--><!--/ko-->
+            
+            <br><span data-bind="text:info"></span>
+        </p>
+        <svg  data-bind="style: {display: $parent.selected() == $index() ? '' : 'none'}" style="margin-top: -21px;float: right;margin-right: -10px;" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 5C0 2.23858 2.23858 0 5 0H25V15C25 19.9706 20.9706 24 16 24H0V5Z" fill="#FFB700"/>
+            <path d="M6.15 13C6.05 12.9 6 12.75 6 12.65C6 12.55 6.05 12.4 6.15 12.3L6.85 11.6C7.05 11.4 7.35 11.4 7.55 11.6L7.6 11.65L10.35 14.6C10.45 14.7 10.6 14.7 10.7 14.6L17.4 7.65H17.45C17.65 7.45 17.95 7.45 18.15 7.65L18.85 8.35C19.05 8.55 19.05 8.85 18.85 9.05L10.85 17.35C10.75 17.45 10.65 17.5 10.5 17.5C10.35 17.5 10.25 17.45 10.15 17.35L6.25 13.15L6.15 13Z" fill="white"/>
+            </svg>
+            
+        </div>   
+    </div>

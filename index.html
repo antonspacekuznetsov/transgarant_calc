@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>domain1.com</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/bootstrap.css">
+<link rel="stylesheet" href="styles/style.css" >
+<script data-main="scripts/libs/main" src='scripts/libs/require.js'></script>
+</head>
+<body>
+    
+    <div class="container" data-bind="template:{'if':isLoaded('header_template'), name: 'header_template' }"></div>
+    <div class="container" data-bind='component: "category_block"'></div>
+    <div class="container" data-bind='component: "bodytype_block"'></div>
+    <div class="container" data-bind="template:{'if':isLoaded('footer_template'), name: 'footer_template'}"></div>
+</body>
+</html>
