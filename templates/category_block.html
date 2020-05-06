@@ -12,7 +12,7 @@
     </div>
 
     <div class="row category_ract" data-bind="foreach: categories">
-        <div class="col-sm-3" data-bind="click:function(){$parent.selected($index());}">
+        <div class="col-sm-3 category_box"  data-bind="click:function(){$parent.selected($index());}">
             <!-- ko component: 'popup' -->
             <!-- /ko -->   
         <p><img data-bind="attr :{src: 'images/cat' + 0 + '.png'}">

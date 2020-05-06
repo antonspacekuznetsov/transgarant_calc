@@ -136,7 +136,7 @@ color: #000000;
 {
     margin: 30 0 0 30;
 }
-.category_ract div
+.category_box
 {
 cursor: pointer;
 background: #FFFFFF;
@@ -149,17 +149,17 @@ margin:9px;
 padding: 10px;
 }
 
-.category_ract div:hover
+.category_box:hover
 {
     background-color: #f7f4f4;
 }
 
-.category_ract div img
+.category_box img
 { 
     float:left;
     margin-right: 10px;
 }
-.category_ract div p
+.category_box p
 {
     text-align: left;
     font-family: Montserrat;
@@ -173,7 +173,7 @@ line-height: 16px;
 color: #000000;
 }
 
-.category_ract div p span
+.category_box p span
 {
   
     font-family: Montserrat;
