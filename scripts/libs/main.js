@@ -12,11 +12,20 @@ requirejs.config({
         // js/lib/jquery-1.9.0.js, relative to
         // the HTML page.
         'ko': 'libs/knockout-3.5.1',
-        'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min']
+        'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min'],
+        'bootstrap': ['//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min', 'libs/bootstrap.min']
+    },
+    shim: {
+        'jquery':{
+            exports: 'jQuery'
+        },
+        'bootstrap': {
+            deps: ['jquery'],
+        }
     }
 });
 
-var blocks = ['utils/templateloader', 'calc/category_block', 'calc/bodytype_block'];
+var blocks = ['utils/templateloader', 'bootstrap', 'calc/category_block', 'calc/bodytype_block'];
 
 require(blocks, function(init){
     init(['header_template','footer_template']);

@@ -29,6 +29,9 @@ a
     .logo {
         margin-left: calc(50% - 117.5px);
     }
+    .bodytype_ract{
+        padding-left: calc(100% - 532px);
+    }
 }
 
 .contacts
@@ -239,7 +242,17 @@ color: #000000;
 {
     margin: 30 0 0 30;
 }
-
+.bodytype_ract_second
+{
+    margin: 30 0 0 30;
+}
+.bodytype_ract_bigoptions
+{
+    padding: 20px;
+    border: 1px solid #FFB700;
+    border-radius: 10px;
+    display: flex;
+}
 .bodytype_racts
 {
 
@@ -298,3 +311,36 @@ color: #000000;
     background: #FFFAD1;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
   }
+
+
+.bodytype_list{
+cursor: pointer;
+background: #FFFFFF;
+border: 1px solid #FFB700;
+box-sizing: border-box;
+border-radius: 10px;
+
+width: 257px;
+margin:9px;
+padding: 15px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+
+/* identical to box height */
+text-align: center;
+
+color: #000000;
+}
+
+.listbodytype{
+    border: 1px solid rgb(255, 183, 0);
+    border-radius: 14px;
+    padding: 5px 3px;
+    width: 100%;
+    font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+}

@@ -17,6 +17,7 @@ define(["ko", 'text!/templates/popup_template.html'], function(ko, template){
             tooltipElem.style.left = left + 'px';
             tooltipElem.style.top = top + 'px';
             tooltipElem.style.display = '';
+            if(document.body.offsetWidth < 500) tooltipElem.style.display = 'block';
            
         };
 

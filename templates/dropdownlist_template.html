@@ -1,0 +1,11 @@
+<div class="dropdown">
+    <button data-bind="click:function(){$parent.focused(true)}, style:{display : $parent.focused() ? 'none' : ''}, attr:{id:$parent.id}" style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;width: 100%;text-align: left;outline: none;" class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <!-- ko text:$parent.title--><!--/ko-->
+      <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
+    </button>
+    <ul style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;margin-top: -17px;padding: 5px 3px;width: 100%;" class="dropdown-menu" aria-labelledby="dropdownMenu1" data-bind="foreach:$parent.sublist">
+        <!--ko if: $parents[1].title() !== $data-->
+            <li><a href="#" data-bind="text:$data, click:function(){$parents[1].title($data);$parents[1].focused(false);}"></a></li>
+        <!--/ko-->
+    </ul>
+</div>
