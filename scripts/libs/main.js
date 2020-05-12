@@ -13,7 +13,8 @@ requirejs.config({
         // the HTML page.
         'ko': 'libs/knockout-3.5.1',
         'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min'],
-        'bootstrap': ['//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min', 'libs/bootstrap.min']
+        'bootstrap': ['//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min', 'libs/bootstrap.min'],
+        'ymaps' : '//api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=12f44bf1-c336-4317-bbae-a3822321f106'
     },
     shim: {
         'jquery':{
@@ -21,6 +22,9 @@ requirejs.config({
         },
         'bootstrap': {
             deps: ['jquery'],
+        },
+        'ymaps': {
+            exports: 'ymaps'
         }
     }
 });
