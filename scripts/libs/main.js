@@ -13,12 +13,17 @@ requirejs.config({
         // the HTML page.
         'ko': 'libs/knockout-3.5.1',
         'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min'],
+        'inputMask': 'libs/jquery.inputmask',
         'bootstrap': ['//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min', 'libs/bootstrap.min'],
         'ymaps' : '//api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=12f44bf1-c336-4317-bbae-a3822321f106'
     },
     shim: {
         'jquery':{
-            exports: 'jQuery'
+            exports: ['$', 'jQuery']
+        },
+        'inputMask': {
+            deps: ['jquery'],
+            exports: ['$', 'jQuery']
         },
         'bootstrap': {
             deps: ['jquery'],
@@ -29,7 +34,7 @@ requirejs.config({
     }
 });
 
-var blocks = ['utils/templateloader', 'bootstrap', 'calc/category_block', 'calc/bodytype_block', 'calc/point_block'];
+var blocks = ['utils/templateloader', 'bootstrap', 'calc/category_block', 'calc/bodytype_block', 'calc/point_block', 'calc/characteristics_block',  'calc/fio_block'];
 
 require(blocks, function(init){
     init(['header_template','footer_template']);

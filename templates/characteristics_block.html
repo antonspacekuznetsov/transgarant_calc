@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-12">
+        <p class="bodytype_text"><b>Данные о грузе</b></p>  
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="cargo_info">
+            <!--ko with: types[selectedType()].fields-->
+            <p data-bind="text: ($data[0].value() ? $data[0].value() : $data[0].title) + ' (Ценность груза('+ ($data[1].value() ? $data[1].value() : 0) +'Р)'"></p>
+            <p data-bind="text: 'ОБЩИ ВЕС / ОБЪЕМ ГРУЗА(' + ($data[5].value() ? $data[5].value() : 0) + ' кг / 5 куб) / Площадь (3м2)' "></p>
+            <!--/ko-->
+        </div>
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+</div>
