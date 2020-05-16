@@ -34,7 +34,7 @@ requirejs.config({
     }
 });
 
-var blocks = ['utils/templateloader', 'bootstrap', 'calc/category_block', 'calc/bodytype_block', 'calc/point_block', 'calc/characteristics_block',  'calc/fio_block'];
+var blocks = ['utils/templateloader', 'bootstrap', 'calc/category_block', 'calc/bodytype_block', 'calc/point_block', 'calc/characteristics_block',  'calc/fio_block', 'calc/rate_block'];
 
 require(blocks, function(init){
     init(['header_template','footer_template']);
