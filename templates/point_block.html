@@ -11,9 +11,19 @@
             <p class="category_text"><b>Маршрут</b></p>         
         </div>
         <div class="col-sm-9 category_time">  
-            <img class="line" src="images/line.png"> 
-            <img src="images/calendar.png"> 
-            <b class="time_text">Сегодня</b> <b class="time_text1">c</b> <b class="time_text">10:54</b> <b class="time_text1">до</b> <b class="time_text">11:54</b>           
+                
+
+                <div data-bind="dateTimePicker:dateOrder, dateTimePickerOptions:{sideBySide: true, locale: 'ru'}" class='input-group date'>
+                <input type='text' class="form-control" style="width: 0px; padding: 0px;border: 0px;" />
+                <span class="input-group-addon" style="border: 0px;background: none;width: 100%;">
+                    <span> 
+                        <img class="line" src="images/line.png"> <img src="images/calendar.png"> 
+                        <b class="time_text">Сегодня</b> <b class="time_text1">c</b> <b class="time_text">10:54</b> <b class="time_text1">до</b> <b class="time_text">11:54</b> 
+                    </span>
+                </span>
+            </div>
+           
+                     
         </div>
     </div>
 
@@ -130,7 +140,7 @@
                     <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeFrom, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeFrom().getHours()).slice(-2) + ':' + ('0' + breakTimeFrom().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">                            
                 </div>                
                 <div class="adress pozis_righ tim">
-                    <span class="text_point">до 18.00</span>                
+                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeTill, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeTill().getHours()).slice(-2) + ':' + ('0' + breakTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="до 18.00">                                           
                 </div>
             </div>
             <div style="background: #FFFFFF;border: 1px solid #C5C5C5;box-sizing: border-box;border-radius: 10px;margin-top: 139px;padding: 20px;margin-bottom: 12px;">
