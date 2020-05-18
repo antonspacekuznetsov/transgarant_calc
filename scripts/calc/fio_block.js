@@ -1,4 +1,4 @@
-define(["ko", 'text!/templates/fio_block.html', 'inputMask'], function(ko, template){
+define(["ko", 'text!/templates/fio_block.html', "utils/customHandlers", 'inputMask'], function(ko, template){
     var viewModel = function(params){
         this.elements = [
             {alt:"ФИО", name: 'fullname', mask:'Aa{1,20} Aa{1,20} Aa{1,20}', error:'Ведено не коректное имя', type:'input'},
@@ -12,9 +12,5 @@ define(["ko", 'text!/templates/fio_block.html', 'inputMask'], function(ko, templ
         template: template
     });
 
-    ko.bindingHandlers.mask = {
-        init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-            $(element).inputmask(valueAccessor());
-        }
-    };
+
 });
