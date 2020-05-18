@@ -716,6 +716,191 @@ div.accept_cargo{
       }
       }
   
-     
+      /* rates */
   
-  
+      .block_up{
+            margin-top: 30px;
+      }
+
+      .background_pricing_orange {
+    background: #FFB700;
+    border: 1px solid #FFB700;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .background_pricing_white{
+    background: #FFFFFF;
+    border: 1px solid #FFB700;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .name_blok_rates{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #FFFFFF;
+  }
+
+  .text_rates {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    
+    color: #FFFFFF;
+  }
+
+  .name_rates_black{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #4F4F4F;
+    
+  }
+
+  .text_black{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    
+    color: #4F4F4F;
+  }
+
+  .slyb_text {
+    padding: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 37px;
+    
+    color: #000000;
+  }
+
+  .tex_up {
+      margin-top: 15px;
+  }
+
+  .sluj_inf{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 26px;
+    
+    color: #6C6C6C;
+  }
+
+
+  @media screen and (max-width: 1200px)
+  {
+     .transfer_blok {
+         margin-top: 20px;
+     } 
+  }
+
+  @media screen and (max-width: 993px)
+  {
+    .transfer_blok2 {
+        margin-top: 20px;
+    } 
+ }
+
+ .name_tarif{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    
+    text-transform: capitalize;
+    
+    color: #000000;
+ }
+
+ .text_tarif{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 37px;
+    
+    color: #000000;
+ }
+
+ .fon_tarif{
+    background: #FBFBFB;
+    border-radius: 10px;
+    padding: 0px 20px;
+    height: 37px;
+    width: 555px;
+ }
+
+ .fon_tarif_white{
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 0px 20px;
+    height: 37px;
+    width: 555px;
+ }
+
+ span.text_pay {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+    padding: 20px;
+    color: #000000;
+ }
+
+.fon_pay{
+    margin-top: 30px;
+    background: #FBFBFB;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.text_al_c {
+    text-align: center;
+}
+
+.text_al_r{
+    text-align: right;
+}
+
+.srf_op {
+    width: 376px;
+}
+
+@media screen and (max-width: 1200px)
+  {
+    .fon_pay{
+        width: 528px;
+        margin-left: 0px;
+    } 
+    .col-sm-4.srf_op{
+         padding: 10px;
+     }
+     .text_al_c {
+        text-align: left;
+    }
+    .text_al_r {
+        text-align: left;
+    }
+  }
