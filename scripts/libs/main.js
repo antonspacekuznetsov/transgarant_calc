@@ -3,19 +3,14 @@ requirejs.config({
     appDir: "../",
     baseUrl: 'scripts/',
     paths: {
-        // the left side is the module ID,
-        // the right side is the path to
-        // the jQuery file, relative to baseUrl.
-        // Also, the path should NOT include
-        // the '.js' file extension. This example
-        // is using jQuery 1.9.0 located at
-        // js/lib/jquery-1.9.0.js, relative to
-        // the HTML page.
         'ko': 'libs/knockout-3.5.1',
         'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min'],
         'inputMask': 'libs/jquery.inputmask',
         'bootstrap': ['//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min', 'libs/bootstrap.min'],
-        'ymaps' : '//api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=12f44bf1-c336-4317-bbae-a3822321f106'
+        'ymaps' : '//api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=12f44bf1-c336-4317-bbae-a3822321f106',
+        'suggestions': '//cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min',
+        'moment': 'libs/moment-with-locales',
+        'datetimepicker': '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min'
     },
     shim: {
         'jquery':{
@@ -25,12 +20,20 @@ requirejs.config({
             deps: ['jquery'],
             exports: ['$', 'jQuery']
         },
+        'suggestions': {
+            deps: ['jquery'],
+            exports: ['$', 'jQuery']
+        },
         'bootstrap': {
             deps: ['jquery'],
         },
+        'datetimepicker': {
+            deps: ['bootstrap', 'jquery', 'moment'],
+        },
         'ymaps': {
             exports: 'ymaps'
-        }
+        },
+
     }
 });
 

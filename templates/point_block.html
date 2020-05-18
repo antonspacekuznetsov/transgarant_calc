@@ -1,3 +1,9 @@
+<div class="map_ya">
+    <span data-bind="click:function(){$('.map_ya').css('display','none'), preSelectedaddressFromMap(null)}" class="glyphicon glyphicon-remove close_map" aria-hidden="true"></span>
+    <div id="map"></div>
+    <p data-bind="text:preSelectedaddressFromMap();" style="color:white;"></p>
+    <input data-bind="click:function(){address(preSelectedaddressFromMap());$('.map_ya').css('display','none')}" type="button" name="selectCoords" value="Выбрать">
+</div>
 
     <!-- name blok -->
     <div class="row background_route">
@@ -71,31 +77,31 @@
         <div class="col-sm-7 background_point">
             <div class="text_time">Точка 1</div>
             <div class="adress">
-                <span class="text_point">Адрес</span>
+                <input data-bind="address:init, value:address" type="text" style="width:400px;" class="hide_input" placeholder="Адрес">
                 <div class="text_right">
-                    <span class="text_map">Выбрать на карте</span>
+                    <a  style="cursor: pointer;" data-bind="click: function(){$('.map_ya').css('display','block')}" class="text_map">Выбрать на карте</a>
                     <img src="images/placeholder 1.png">
                 </div>
             </div>
             <div>
                 <div class="adress pozis_lef">
-                    <span class="text_point">Комментарий к адресу</span>                
+                    <input data-bind="value:commentToAddress" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Комментарий к адресу">             
                 </div>                
                 <div class="adress pozis_righ">
-                    <span class="text_point">В какую компанию по адресу</span>                
+                    <input type="text" style="width:100%;height:16px;" class="hide_input" placeholder="В какую компанию по адресу">              
                 </div>
             </div> 
             <div>
                 <div class="adress pozis_lef">
-                    <span class="text_point">Контактное лицо (ФИО)</span>                
+                    <input type="text" data-bind="mask: 'Aa{1,20} Aa{1,20} Aa{1,20}'" style="width:100%;height:16px;" class="hide_input" placeholder="Контактное лицо (ФИО)">                
                 </div>                
                 <div class="adress pozis_righ">
-                    <input type="text">                
+                    <input data-bind="mask: '+7 (999) 999-9999'" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Номер телефона">                
                 </div>
             </div> 
             <div>
                 <div class="adress pozis_lef">
-                    <span class="text_point">Что нужно сделать по адресу</span>                
+                    <input  type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Что нужно сделать по адресу">                
                 </div>                
                 <div class="adress pozis_righ adress_fon">
                     <img src="images/doc1.png">
@@ -107,20 +113,21 @@
             <div class="text_time">Часы работы</div>
             <div>
                 <div class="adress pozis_lef tim">
-                    <span class="text_point">с 9.00</span>                
+                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:workTimeFrom, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + workTimeFrom().getHours()).slice(-2) + ':' + ('0' + workTimeFrom().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">              
                 </div>                
                 <div class="adress pozis_righ tim">
-                    <span class="text_point">до 18.00</span>                
+                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:workTimeTill, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + workTimeTill().getHours()).slice(-2) + ':' + ('0' + workTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">              
+               
                 </div>
             </div>
             <div style="margin-bottom: 30px; margin-top: 90px;">
                 <span class="pererv">Перерыв</span>
-                <img src="images/Rectangle.png">
-                <span class="noy">Нет</span>
+                <span data-bind="html: isBreak() ? checkinSVG : checkoutSVG, click:function(){isBreak(!isBreak())}" style="cursor: pointer;"></span>
+                <span class="noy" style="cursor: pointer;" data-bind="click:function(){isBreak(!isBreak())}, text: isBreak() ? 'Нет' : 'Да'">Нет</span>
             </div> 
             <div>
                 <div class="adress pozis_lef tim">
-                    <span class="text_point">с 9.00</span>                
+                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeFrom, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeFrom().getHours()).slice(-2) + ':' + ('0' + breakTimeFrom().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">                            
                 </div>                
                 <div class="adress pozis_righ tim">
                     <span class="text_point">до 18.00</span>                

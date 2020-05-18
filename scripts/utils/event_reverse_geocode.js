@@ -1,7 +1,7 @@
 define(["ymaps"], function(ymaps){
-    ymaps.ready(init);
-
+    
 function init() {
+    var self = this;
     var myPlacemark,
         myMap = new ymaps.Map('map', {
             center: [55.753994, 37.622093],
@@ -45,7 +45,6 @@ function init() {
         myPlacemark.properties.set('iconCaption', 'поиск...');
         ymaps.geocode(coords).then(function (res) {
             var firstGeoObject = res.geoObjects.get(0);
-
             myPlacemark.properties
                 .set({
                     // Формируем строку с данными об объекте.
@@ -58,8 +57,10 @@ function init() {
                     // В качестве контента балуна задаем строку с адресом объекта.
                     balloonContent: firstGeoObject.getAddressLine()
                 });
+                self.preSelectedaddressFromMap(myPlacemark.properties._data.balloonContent);
         });
+
     }
 }
-
+    return init;
 });

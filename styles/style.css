@@ -541,6 +541,7 @@ div.accept_cargo{
   }
 
   div.adress {
+    height:60px;
     background: #FFFFFF;
     border: 1px solid #C5C5C5;
     box-sizing: border-box;
@@ -548,6 +549,9 @@ div.accept_cargo{
     padding: 20px;
    
     margin-bottom: 20px;
+  }
+  div.adress > input {
+    float:left;
   }
 
   .text_point{
@@ -717,6 +721,184 @@ div.accept_cargo{
       }
   
       /* rates */
+
+.tariff_info{
+    background: #FBFBFB;
+    border: 1px solid #C1C1C1;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 282px;
+    height: 64px;
+    padding: 24px;
+}
+
+.tariff_info > p {
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+text-align: center;
+text-transform: capitalize;
+
+color: #7B7B7B;
+}
+
+.cargo_char{
+    font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+.char_button{
+    background: #FFB700;
+    border: 1px solid #FFB700;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 247px;
+height: 46px;
+padding: 13px;
+cursor: pointer;
+}
+.char_button:hover{
+    background: #fdbd19;
+}
+.char_button >p{
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    
+    color: #FFFFFF;
+}
+
+.char_input_name_cargo > input{
+    background: #FFFFFF;
+    border: 1px solid #C5C5C5;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 261px;
+height: 54px;
+outline: none;
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 16px;
+padding: 15px;
+color: #000000;
+}
+
+.char_input_price > input {
+    background: #FFFFFF;
+border: 1px solid #C5C5C5;
+box-sizing: border-box;
+border-radius: 10px;
+width: 154px;
+height: 54px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 16px;
+/* identical to box height */
+
+text-align: center;
+outline: none;
+color: #636363;
+}
+.char_title{
+    margin-top:20px;
+    width: 101px;
+}
+.char_par > p{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    /* identical to box height */
+    
+    
+    color: #636363;
+}
+.char_par_parent{
+    margin-right: 15px;
+}
+.char_par{
+    margin-top: -30px;
+}
+.char_par > input {
+    background: #FFFFFF;
+border: 1px solid #C5C5C5;
+box-sizing: border-box;
+border-radius: 10px;
+width: 101px;
+height: 54px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 16px;
+outline: none;
+text-align: center;
+
+color: #636363;
+}
+
+.hide_input{
+    border: none;
+    outline: none;
+}
+
+.suggestions-promo{
+    display: none!important;
+}
+.suggestions-wrapper{
+    position: absolute!important;
+    margin-top: 40px!important;
+    width: -webkit-fill-available;
+}
+.map_ya{
+    position: fixed; /* фиксированное положение */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5); /* цвет фона */
+    z-index: 3000;
+   width: 100%;
+   height:100%;
+   padding: 40px;
+    -webkit-transition: opacity 200ms ease-in; 
+    -moz-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in; /* анимация перехода */
+    margin: 0;
+   display: none;
+}
+.close_map{
+    color:#b3b1b1;
+    cursor: pointer;
+    margin-top: -30px;
+    margin-right: -25px;
+    float: right;
+}
+.close_map:hover{
+    color:white;
+}
+     
+  
   
       .block_up{
             margin-top: 30px;
