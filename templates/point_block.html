@@ -26,67 +26,12 @@
                      
         </div>
     </div>
-
-     <!-- points blok -->
-    <div class="row">
-        <div class="col-sm-6 point_info_block1 point_info_block">
-            <div class="point_rut">
-                <div class="stroki">
-                        <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;">Точка 1</span>
-                        <div class="qqq">
-                            <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
-                            <img  src="images/point.png"> 
-                        </div>                        
-                </div>                
-                <div class="stroki">
-                    <img  style="margin-right: 10px;" src="images/placeholder 1.png">
-                    <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 14px; line-height: 17px; color: #636363;">г. Москва ул. Пушкинская оф. 2 (в арочку)</span>                       
-                </div>
-                <div class="stroki">
-                    <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 16px; line-height: 20px; color: #636363;padding-left: 5px;">В ООО "Salus" Васька + 7 934 43 59 435</span>                       
-                </div>
-                <div class="stroki">
-                    <div class="accept_cargo">
-                        <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 22px; color: #6C6C6C; ">Принять груз для того то от такой то компании сказать что по счету такому то</span>  
-                    </div>
-                    <img  style="margin: 10px; margin-left: 70px;" src="images/checked_38.png">                    
-                </div>
-            </div>            
-        </div> 
-        <div class="col-sm-6 point_info_block2 point_info_block">  
-            <div class="point_rut">
-                <div class="stroki">
-                    <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;">Точка 2</span>
-                    <div class="qqq">
-                        <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
-                        <img  src="images/point.png"> 
-                    </div>                        
-            </div>                
-            <div class="stroki">
-                <img  style="margin-right: 10px;" src="images/placeholder 1.png">
-                <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 14px; line-height: 17px; color: #636363;">г. Москва ул. Пушкинская оф. 2 (в арочку)</span>                       
-            </div>
-            <div class="stroki">
-                <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 16px; line-height: 20px; color: #636363;padding-left: 5px;">В ООО "Salus" Васька + 7 934 43 59 435</span>                       
-            </div>
-            <div class="stroki">
-                <div class="accept_cargo">
-                    <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 22px; color: #6C6C6C; ">Принять груз для того то от такой то компании сказать что по счету такому то</span>  
-                </div>
-                <img  style="margin: 10px; margin-left: 70px;" src="images/checked_38.png">                    
-            </div>
-            </div>
-        </div>
-    </div>
-    
-     <!-- button points blok -->
-    <div class="parallelogram" style="font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 50px;">Добавить адрес</div>
     
      <!-- point adress -->
     <div class="row blok_point">
         <div class="col-sm-7 background_point">
-            <div class="text_time">Точка 1</div>
-            <div class="adress">
+            <div class="text_time" data-bind="text:'Точка ' + (removedList().length > 0 ?  (removedList()[0] + 1) : (points().length + 1))"></div>
+            <div class="adress" data-bind="style: {'border-color': address() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
                 <input data-bind="address:init, value:address" type="text" style="width:400px;" class="hide_input" placeholder="Адрес">
                 <div class="text_right">
                     <a  style="cursor: pointer;" data-bind="click: function(){$('.map_ya').css('display','block')}" class="text_map">Выбрать на карте</a>
@@ -97,21 +42,21 @@
                 <div class="adress pozis_lef">
                     <input data-bind="value:commentToAddress" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Комментарий к адресу">             
                 </div>                
-                <div class="adress pozis_righ">
-                    <input type="text" style="width:100%;height:16px;" class="hide_input" placeholder="В какую компанию по адресу">              
+                <div class="adress pozis_righ" data-bind="style: {'border-color': company() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
+                    <input data-bind="textInput:company" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="В какую компанию по адресу">              
                 </div>
             </div> 
             <div>
-                <div class="adress pozis_lef">
-                    <input type="text" data-bind="mask: 'Aa{1,20} Aa{1,20} Aa{1,20}'" style="width:100%;height:16px;" class="hide_input" placeholder="Контактное лицо (ФИО)">                
+                <div class="adress pozis_lef" data-bind="style: {'border-color': fio() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
+                    <input type="text" data-bind="mask: 'Aa{1,20} Aa{1,20} Aa{1,20}', textInput: fio" style="width:100%;height:16px;" class="hide_input" placeholder="Контактное лицо (ФИО)">                
                 </div>                
-                <div class="adress pozis_righ">
-                    <input data-bind="mask: '+7 (999) 999-9999'" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Номер телефона">                
+                <div class="adress pozis_righ" data-bind="style: {'border-color': tel() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
+                    <input data-bind="mask: '+7 (999) 999-9999', textInput: tel" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Номер телефона">                
                 </div>
             </div> 
             <div>
                 <div class="adress pozis_lef">
-                    <input  type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Что нужно сделать по адресу">                
+                    <input  data-bind="textInput:toDo" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Что нужно сделать по адресу">                
                 </div>                
                 <div class="adress pozis_righ adress_fon">
                     <img src="images/doc1.png">
@@ -151,8 +96,38 @@
             </div>
         </div>
     </div>
-
-
     <!-- button point adress -->
-    <div class="parallelogram" style="font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;">Добавить</div>
+    <div data-bind="click: addPoint" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;">Добавить</div>
     
+     <!-- points blok -->
+     <div class="row" data-bind="foreach: points">
+         <!--ko if:!removed()-->
+            <div data-bind="class: Number.isInteger(($index()+1)/2) ? 'point_info_block2' : 'point_info_block1'" class="col-sm-6 point_info_block">
+                <div class="point_rut">
+                    <div class="stroki">
+                            <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;" data-bind="text:'Точка ' + ($index()+1)"></span>
+                            <div class="qqq">
+                                <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
+                                <img style="cursor:pointer;" data-bind="click:function(){$parent.remove($index())}" src="images/point.png"> 
+                            </div>                        
+                    </div>                
+                    <div class="stroki">
+                        <img  style="margin-right: 10px;" src="images/placeholder 1.png">
+                        <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 14px; line-height: 17px; color: #636363;" data-bind="text: address + ' '+ (commentToAddress !== '' ? ( '(' + commentToAddress + ')' ) : '') "></span>                       
+                    </div>
+                    <div class="stroki">
+                        <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 16px; line-height: 20px; color: #636363;padding-left: 5px;" data-bind="text: 'В ' + company + ', ' + fio + ', ' + tel"></span>                       
+                    </div>
+                    <div class="stroki">
+                        <div class="accept_cargo">
+                            <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 22px; color: #6C6C6C;" data-bind="text: toDo"></span>  
+                        </div>
+                        <!--ko if: file-->
+                        <img  style="margin: 10px; margin-left: 70px;" src="images/checked_38.png">        
+                        <!--/ko-->            
+                    </div>
+                </div>            
+            </div>    
+            <!-- /ko-->
+    </div>
+ 
