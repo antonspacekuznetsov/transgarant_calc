@@ -475,7 +475,7 @@ div.loading {
     background: #FBFBFB;
     border-radius: 10px;
     margin-top: -8px;
-    margin-right: 30px;
+    margin-right: 14px;
 }
 
 
@@ -635,10 +635,10 @@ div.accept_cargo{
     padding-left: 20px;
   }
 
-  @media screen and (max-width: 1200px)
+  @media screen and (max-width: 1199px)
   {
       div.loading {
-          width: 260px;
+          width: 250px;
       }
       .col-sm-7.background_point{
           width: 683px;
@@ -669,7 +669,7 @@ div.accept_cargo{
           padding-left: 0px;
       }
       div.loading {
-          width: 540px;
+          width: 530px;
       }
   }
   
@@ -690,7 +690,7 @@ div.accept_cargo{
      @media screen and (max-width: 767px)
      { 
       div.loading {
-          width: 470px;
+          width: 460px;
       }
       .category_time {
           margin-top: -40px;
@@ -1090,3 +1090,4 @@ color: #636363;
   .bootstrap-datetimepicker-widget table td.active {
       background-color:#fdbd19!important;
   }
+
