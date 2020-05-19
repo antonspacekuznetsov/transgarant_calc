@@ -6,7 +6,7 @@
 </div>
 
     <!-- name blok -->
-    <div class="row background_route">
+    <div id="point__block" class="row background_route">
         <div class="col-sm-3">
             <p class="category_text"><b>Маршрут</b></p>         
         </div>
@@ -30,9 +30,9 @@
      <!-- point adress -->
     <div class="row blok_point">
         <div class="col-sm-7 background_point">
-            <div class="text_time" data-bind="text:'Точка ' + (removedList().length > 0 ?  (removedList()[0] + 1) : (points().length + 1))"></div>
+            <div class="text_time" data-bind="text:editMode.turned() ? 'Редактирование: Точка ' + (editMode.pointNumber + 1) : ('Точка ' + (removedList().length > 0 ?  (removedList()[0] + 1) : (points().length + 1)))"></div>
             <div class="adress" data-bind="style: {'border-color': address() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
-                <input data-bind="address:init, value:address" type="text" style="width:400px;" class="hide_input" placeholder="Адрес">
+                <input data-bind="address:init, textInput:address" type="text" style="width:400px;" class="hide_input" placeholder="Адрес">
                 <div class="text_right">
                     <a  style="cursor: pointer;" data-bind="click: function(){$('.map_ya').css('display','block')}" class="text_map">Выбрать на карте</a>
                     <img src="images/placeholder 1.png">
@@ -40,7 +40,7 @@
             </div>
             <div>
                 <div class="adress pozis_lef">
-                    <input data-bind="value:commentToAddress" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Комментарий к адресу">             
+                    <input data-bind="textInput:commentToAddress" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Комментарий к адресу">             
                 </div>                
                 <div class="adress pozis_righ" data-bind="style: {'border-color': company() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
                     <input data-bind="textInput:company" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="В какую компанию по адресу">              
@@ -97,7 +97,7 @@
         </div>
     </div>
     <!-- button point adress -->
-    <div data-bind="click: addPoint" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;">Добавить</div>
+    <div data-bind="click: editMode.turned() ? save : addPoint, text:editMode.turned() ? 'Сохранить' : 'Добавить'" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;"></div>
     
      <!-- points blok -->
      <div class="row" data-bind="foreach: points">
@@ -108,7 +108,7 @@
                             <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;" data-bind="text:'Точка ' + ($index()+1)"></span>
                             <div class="qqq">
                                 <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
-                                <img style="margin-right: 8px;" src="images/pencil.png"> 
+                                <img style="cursor:pointer;margin-right: 8px;" data-bind="click:function(){$parent.edit($index())}, scroll:'#point__block'" src="images/pencil.png"> 
                                 <img style="cursor:pointer;" data-bind="click:function(){$parent.remove($index())}" src="images/point.png"> 
                             </div>                        
                     </div>                

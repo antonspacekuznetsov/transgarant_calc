@@ -1,4 +1,4 @@
-define(["ko"], function(ko){
+define(["ko", 'utils/utils'], function(ko, utils){
     ko.bindingHandlers.address = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
             $(element).suggestions({
@@ -15,6 +15,14 @@ define(["ko"], function(ko){
     ko.bindingHandlers.mask = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
             $(element).inputmask(valueAccessor());
+        }
+    };
+
+    ko.bindingHandlers.scroll = {
+        init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+            $(element).click(function(){
+                utils.smoothScroll($(valueAccessor()).offset().top, 500);
+            });
         }
     };
 
