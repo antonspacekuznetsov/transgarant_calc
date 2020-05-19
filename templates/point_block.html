@@ -18,7 +18,7 @@
                 <span class="input-group-addon" style="border: 0px;background: none;width: 100%;">
                     <span> 
                         <img class="line" src="images/line.png"> <img src="images/calendar.png"> 
-                        <b class="time_text">Сегодня</b> <b class="time_text1">c</b> <b class="time_text">10:54</b> <b class="time_text1">до</b> <b class="time_text">11:54</b> 
+                        <b class="time_text" data-bind="text:moment(dateOrder()).format('dddd') + ' ' + moment(dateOrder()).format('D') + ' ' + moment(dateOrder()).format('MMMM')"></b> <b class="time_text1">в</b> <b class="time_text" data-bind="text:moment(dateOrder()).format('LT')"></b>
                     </span>
                 </span>
             </div>

@@ -3,7 +3,9 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
     
     
     var viewModel = function(){
-        this.dateOrder = ko.observable(new Date()),
+        this.moment = moment,
+
+        this.dateOrder = ko.observable(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), 0, 0)),
         this.coords = {x: null, y: null},
         this.preSelectedaddressFromMap = ko.observable(null),
         this.address = ko.observable(null),
