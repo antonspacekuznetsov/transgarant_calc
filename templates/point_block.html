@@ -18,7 +18,7 @@
                 <span class="input-group-addon" style="border: 0px;background: none;width: 100%;">
                     <span> 
                         <img class="line" src="images/line.png"> <img src="images/calendar.png"> 
-                        <b class="time_text" data-bind="text:moment(dateOrder()).format('dddd') + ' ' + moment(dateOrder()).format('D') + ' ' + moment(dateOrder()).format('MMMM')"></b> <b class="time_text1">в</b> <b class="time_text" data-bind="text:moment(dateOrder()).format('LT')"></b>
+                        <b class="time_text" data-bind="text:moment(dateOrder()).format('dddd') + ' ' + moment(dateOrder()).format('D') + ' ' + ((moment(dateOrder()).format('MMMM') === 'март' || moment(dateOrder()).format('MMMM') === 'август') ? moment(dateOrder()).format('MMMM') + 'а' : moment(dateOrder()).format('MMMM').slice(0, moment(dateOrder()).format('MMMM').length - 1) + 'я')"></b> <b class="time_text1">в</b> <b class="time_text" data-bind="text:moment(dateOrder()).format('LT')"></b>
                     </span>
                 </span>
             </div>
