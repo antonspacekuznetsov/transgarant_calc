@@ -11,7 +11,8 @@ requirejs.config({
         'ymaps' : '//api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=12f44bf1-c336-4317-bbae-a3822321f106',
         'suggestions': '//cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min',
         'moment': 'libs/moment-with-locales',
-        'datetimepicker': '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min'
+        'datetimepicker': '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min',
+        "bootstrap.alert": "libs/bootstrap-alert"
     },
     shim: {
         'jquery':{
@@ -37,7 +38,10 @@ requirejs.config({
         'ymaps': {
             exports: 'ymaps'
         },
-
+        "bootstrap.alert": {
+            deps: ["jquery"],
+            exports: "$.fn.alert"
+        }
     }
 });
 

@@ -4,17 +4,17 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
     
     var viewModel = function(){
         this.moment = moment,
-
+        this.editMode = {turned:ko.observable(false), pointNumber:null},
         this.dateOrder = ko.observable(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), 0, 0)),
-        this.coords = {x: null, y: null},
+        this.coords = ko.observable({x: null, y: null}),
         this.preSelectedaddressFromMap = ko.observable(null),
         this.address = ko.observable(''),
-        this.commentToAddress = '',
+        this.commentToAddress = ko.observable(''),
         this.fio = ko.observable(''),
-        this.toDo = '',
+        this.toDo = ko.observable(''),
         this.company = ko.observable(''),
         this.tel = ko.observable(''),
-        this.file = false,
+        this.file = ko.observable(false),
         this.fileName = ''
 
         this.workTimeFrom = ko.observable(new Date(2020, 0, 1, 9, 0)),
@@ -45,8 +45,8 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
                 var obj = this.points()[this.removedList()[0]];
                 this.points.replace(obj,
                     {
-                        coords: this.coords, address: this.address(), commentToAddress: this.commentToAddress, fio: this.fio(), toDo: this.toDo, 
-                        company: this.company(), tel: this.tel(), file: this.file, fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
+                        coords: this.coords(), address: this.address(), commentToAddress: this.commentToAddress(), fio: this.fio(), toDo: this.toDo(), 
+                        company: this.company(), tel: this.tel(), file: this.file(), fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
                         isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), removed:ko.observable(false)
                     }
                     );
@@ -54,22 +54,26 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             }
             else{
             this.points.push({
-                coords: this.coords, address: this.address(), commentToAddress: this.commentToAddress, fio: this.fio(), toDo: this.toDo, 
-                company: this.company(), tel: this.tel(), file: this.file, fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
+                coords: this.coords(), address: this.address(), commentToAddress: this.commentToAddress(), fio: this.fio(), toDo: this.toDo(), 
+                company: this.company(), tel: this.tel(), file: this.file(), fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
                 isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), removed:ko.observable(false)
             });
             }
 
+            this.clear();
+        },
+
+        this.clear = function(){
             $(".adress>input").each(function(){$(this).val('');});
-            this.coords = {x: null, y: null};
+            this.coords({x: null, y: null});
             this.preSelectedaddressFromMap(null);
             this.address('');
-            this.commentToAddress = '';
+            this.commentToAddress('');
             this.fio('');
-            this.toDo = '';
+            this.toDo('');
             this.company('');
             this.tel('');
-            this.file = false;
+            this.file(false);
             this.fileName = '';
     
             this.workTimeFrom(new Date(2020, 0, 1, 9, 0));
@@ -79,8 +83,10 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
     
             this.breakTimeFrom(new Date(2020, 0, 1, 9, 0));
             this.breakTimeTill(new Date(2020, 0, 1, 18, 0));
+
+            this.editMode.turned(false);
+            this.editMode.pointNumber = null;
         },
-        
 
         this.remove = function(index){
             var obj = this.points()[index];
@@ -88,9 +94,42 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             this.points.replace(this.points()[index], obj);
             this.removedList.push(index);
             this.removedList.sort();
+            this.clear();
         },
 
+        this.edit = function(index){
+            this.editMode.pointNumber = index;
+            this.editMode.turned(false);
+            this.editMode.turned(true);
+            var item = this.points()[index];
+            this.coords(item.coords); 
+            this.address(item.address);
+            this.commentToAddress(item.commentToAddress);
+            this.fio(item.fio);
+            this.toDo(item.toDo); 
+            this.company(item.company);
+            this.tel(item.tel);
+            this.file(item.file);
+            this.fileName = item.fileName;
+            this.workTimeFrom(item.workTimeFrom);
+            this.workTimeTill(item.workTimeTill),
+            this.isBreak(item.isBreak);
+            this.breakTimeFrom(item.breakTimeFrom);
+            this.breakTimeTill(item.breakTimeTill);
+        }
 
+        this.save = function(){
+            var obj = this.points()[this.editMode.pointNumber];
+
+            this.points.replace(obj,
+                {
+                    coords: this.coords(), address: this.address(), commentToAddress: this.commentToAddress(), fio: this.fio(), toDo: this.toDo(), 
+                    company: this.company(), tel: this.tel(), file: this.file(), fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
+                    isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), removed:ko.observable(false)
+                }
+                );
+            this.clear();
+        }
 
         this.checkinSVG = '<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">\
         <rect x="0.5" y="5.5" width="18" height="17" rx="4.5" fill="white" stroke="#C5C5C5"/>\
