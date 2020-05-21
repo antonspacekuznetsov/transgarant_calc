@@ -65,7 +65,7 @@ color: #A6A6A6;
 
 .order_text{
 white-space: nowrap;
-margin-top:96px;
+margin-top:30px;
 font-family: Montserrat;
 font-style: normal;
 font-weight: bold;
@@ -138,7 +138,7 @@ color: #000000;
 
 .category_ract
 {
-    margin: 30 0 0 30;
+    margin: 30 0 0 20;
 }
 .category_box
 {
