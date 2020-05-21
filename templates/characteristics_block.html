@@ -1,83 +1,127 @@
-<div class="row">
+<div class="row background_route">
     <div class="col-sm-12">
         <p class="bodytype_text"><b>Данные о грузе</b></p>  
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-8">
-        <div class="cargo_info">
+<div class="row ro_wi">
+    <div class="col-sm-9 jp_wi">
+        <div style="padding: 20px 20px 10px 20px;" class="cargo_info">
             <!--ko with: types[selectedType()].fields-->
-            <p data-bind="text: ($data[0].value() ? $data[0].value() : $data[0].title) + ' (Ценность груза('+ ($data[1].value() ? $data[1].value() : 0) +'Р)'"></p>
-            <p data-bind="text: 'ОБЩИ ВЕС / ОБЪЕМ ГРУЗА(' + ($data[5].value() ? $data[5].value() : 0) + ' кг / 5 куб) / Площадь (3м2)' "></p>
+            <p style="font-family: Montserrat; font-style: normal;font-weight: bold; font-size: 16px; line-height: 19px;color: #7B7B7B;" data-bind="text: ($data[0].value() ? $data[0].value() : $data[0].title) + ' (Ценность груза('+ ($data[1].value() ? $data[1].value() : 0) +'Р)'"></p>
+            <p style="font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 13px;line-height: 16px;color: #000000;" data-bind="text: 'ОБЩИ ВЕС / ОБЪЕМ ГРУЗА(' + ($data[5].value() ? $data[5].value() : 0) + ' кг / 5 куб) / Площадь (3м2)' "></p>
             <!--/ko-->
         </div>
+        <div>
+            <p style="margin-top: 15px;margin-bottom: 15px;" class="cargo_char">Характеристика груза</p>
+        </div>
+        <div class="wi_hei">
+            <div style="float: left;">
+                <div class="char_button">
+                    <p>Машино место</p>
+                </div>
+            </div>
+            <div class="on_blok">            
+                <div style="float: right;">
+                    <div style="float: left;">
+                        <div class="char_input_name_cargo">
+                            <input style="margin-left: -61px;" type="text" placeholder="Наименование груза">
+                        </div>
+                    </div>
+                    <div style="float: right;">
+                        <div class="char_input_price">
+                            <input style="margin-left: 15px;" type="text" placeholder="Ценность">
+                        </div>
+                    </div>
+                </div>
+                <div style="float: left;">
+                    <div>
+                        <div class="evro_fon">
+                            <div style="float: left;"><span style="font-family: Montserrat;font-style: normal;font-weight: normal; font-size: 13px; line-height: 12px;color: #000000;">Евро</span></div>
+                            <img style="float: right;" src="images/arrow-point-to-right.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="na_pal_wi">
+            <div class="char_button">
+                <p>На палетах</p>
+            </div>
+        </div> 
+        <div class="ypak_wi">
+            <div style="margin-top: 15px; float: left;">
+                <div class="char_button">
+                    <p>Упаковки</p>
+                </div>
+            </div>
+            <div class="kol_dl">
+                <div style="float: left;">
+                    <div style="float: left;" class="char_par_parent">
+                        <div class="char_par">
+                                <p>Количество</p>
+                            <input type="text" placeholder="0">
+                        </div>
+                    </div>
+                    <div style="float: right;" class="char_par_parent">
+                        <div class="char_par">
+                                <p>Длина</p>
+                            <input type="text" placeholder="0">
+                        </div>
+                    </div>
+                </div>
+                <div style="float: right;">
+                    <div class="char_par_parent">
+                        <div class="char_par">
+                            <p>Вес груза</p>
+                            <input type="text" placeholder="0">
+                        </div>
+                    </div>
+                </div>
+                <div style="float: right;">
+                    <div style="float: left;" class="char_par_parent">
+                        <div class="char_par">
+                            <p>Ширина</p>
+                            <input type="text" placeholder="0">
+                        </div>
+                    </div>
+                    <div style="float: right;" class="char_par_parent">
+                        <div class="char_par">
+                            <p>Высота</p>
+                            <input type="text" placeholder="0">
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div> 
+        <div style="margin-top:10px;">
+            <input style="width: 170px;" class="fio_buttons2" type="submit" value="Добавить">
+        </div> 
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3 kvadr_pra">
         <div class="tariff_info">
-            <p>КАТЕГОРИЯ 2+ ТЕНТ</p>
+            <div style="float: left;"><p style="font-family: Montserrat;font-style: normal;font-weight: bold; font-size: 16px; line-height: 19px;text-align: center;text-transform: capitalize;color: #7B7B7B;">КАТЕГОРИЯ 2+ ТЕНТ</p></div>
+            <img style="float: right;" src="images/info-button 10.png">
+        </div>
+        <div class="rectangle_fr">            
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <p class="cargo_char">Характеристика груза</p>
-    </div>
-    <div class="col-sm-3">
-        <div class="char_button">
-            <p>Машино место</p>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="char_input_name_cargo">
-            <input type="text" placeholder="Наименование груза">
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="char_input_price">
-            <input type="text" placeholder="Ценность">
-        </div>
-    </div>
-</div>
+  
 
-<div class="row">
-    <div class="col-sm-3">
-        <div class="char_button">
-            <p>На палетах</p>
-        </div>
-    </div>
 
-</div>
+  
 
-<div class="row" style="margin-top: 9px;">
-    <div class="col-sm-3">
-        <div class="char_button">
-            <p>Упаковки</p>
-        </div>
-    </div>
-    <div class="col-sm-1 char_par_parent">
-        <div class="char_par">
-                <p>Длина</p>
-            <input type="text" placeholder="0">
-        </div>
-    </div>
-    <div class="col-sm-1 char_par_parent">
-        <div class="char_par">
-            <p>Ширина</p>
-            <input type="text" placeholder="0">
-        </div>
-    </div>
-    <div class="col-sm-1 char_par_parent">
-        <div class="char_par">
-            <p>Высота</p>
-            <input type="text" placeholder="0">
-        </div>
-    </div>
-    <div class="col-sm-1 char_par_parent">
-        <div class="char_par">
-            <p>Вес груза</p>
-            <input type="text" placeholder="0">
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
