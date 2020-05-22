@@ -7,30 +7,30 @@
 <div class="row ro_wi">
     <div class="col-sm-9 jp_wi">
         <div style="padding: 20px 20px 10px 20px;" class="cargo_info">
-            <!--ko with: types[selectedType()].fields-->
-            <p style="font-family: Montserrat; font-style: normal;font-weight: bold; font-size: 16px; line-height: 19px;color: #7B7B7B;" data-bind="text: ($data[0].value() ? $data[0].value() : $data[0].title) + ' (Ценность груза('+ ($data[1].value() ? $data[1].value() : 0) +'Р)'"></p>
-            <p style="font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 13px;line-height: 16px;color: #000000;" data-bind="text: 'ОБЩИ ВЕС / ОБЪЕМ ГРУЗА(' + ($data[5].value() ? $data[5].value() : 0) + ' кг / 5 куб) / Площадь (3м2)' "></p>
-            <!--/ko-->
+           
+            <p data-bind="text: (title() === '' ? 'Наименование груза' : title() ) + ' (Ценность груза (' + (price() === '' ? '0' : price()) + ' ₽)'" style="font-family: Montserrat; font-style: normal;font-weight: bold; font-size: 16px; line-height: 19px;color: #7B7B7B;"></p>
+            <p style="font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 13px;line-height: 16px;color: #000000;" ></p>
+            
         </div>
         <div>
             <p style="margin-top: 15px;margin-bottom: 15px;" class="cargo_char">Характеристика груза</p>
         </div>
         <div class="wi_hei">
             <div style="float: left;">
-                <div class="char_button">
-                    <p>Машино место</p>
+                <div class="char_button" data-bind="click:function(){charactsCargo(0)}, style: {background : charactsCargo() === 0 ? '#FFB700' : 'white'}">
+                    <p data-bind="style: {color: charactsCargo() === 0 ? 'white': 'black'}">Машино место</p>
                 </div>
             </div>
             <div class="on_blok">            
                 <div style="float: right;">
                     <div style="float: left;">
                         <div class="char_input_name_cargo">
-                            <input style="margin-left: -61px;" type="text" placeholder="Наименование груза">
+                            <input data-bind="textInput:title, mask: {mask: 'A{1,40}', definitions: {'A':{validator:'[А-Яа-я ]'} }}" style="margin-left: -61px;" type="text" placeholder="Наименование груза">
                         </div>
                     </div>
                     <div style="float: right;">
                         <div class="char_input_price">
-                            <input style="margin-left: 15px;" type="text" placeholder="Ценность">
+                            <input data-bind="textInput:price, mask: 'decimal'" style="margin-left: 15px;" type="text" placeholder="Ценность">
                         </div>
                     </div>
                 </div>
@@ -45,14 +45,14 @@
             </div>
         </div>
         <div class="na_pal_wi">
-            <div class="char_button">
-                <p>На палетах</p>
+            <div class="char_button" data-bind="click:function(){charactsCargo(1)}, style: {background : charactsCargo() === 1 ? '#FFB700' : 'white'}">
+                <p data-bind="style: {color: charactsCargo() === 1 ? 'white': 'black'}">На палетах</p>
             </div>
         </div> 
         <div class="ypak_wi">
             <div style="margin-top: 15px; float: left;">
-                <div class="char_button">
-                    <p>Упаковки</p>
+                <div class="char_button" data-bind="click:function(){charactsCargo(2)}, style: {background : charactsCargo() === 2 ? '#FFB700' : 'white'}">
+                    <p data-bind="style: {color: charactsCargo() === 2 ? 'white': 'black'}">Упаковки</p>
                 </div>
             </div>
             <div class="kol_dl">

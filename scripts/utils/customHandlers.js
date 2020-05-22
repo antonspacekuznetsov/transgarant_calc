@@ -1,4 +1,14 @@
-define(["ko", 'utils/utils'], function(ko, utils){
+define(["ko", 'jquery', 'utils/utils', 'inputMask'], function(ko, $, utils){
+    Inputmask.extendAliases({
+        'decimal': {
+          rightAlign: false,
+          integerDigits: 9,
+          
+       
+          groupSeparator: " ",
+
+        }
+      });
     ko.bindingHandlers.address = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
             $(element).suggestions({
