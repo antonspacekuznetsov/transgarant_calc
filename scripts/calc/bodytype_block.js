@@ -1,4 +1,4 @@
-define(["ko", 'text!/templates/bodytype_block.html', 'utils/dropdownlist'], function(ko, template){
+define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'utils/dropdownlist'], function(ko, template, utils){
     var viewModel = function(params){
         this.bodytypes = { selected: ko.observable(null), focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
         list:[
@@ -7,12 +7,12 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/dropdownlist'], func
         ]},
         this.options = [
             {title: "РАСТЕНТОВКА-БОК", selected:ko.observable(false), sublist:[]},
-            {title: "РАСТЕНТОВКА-ВЕРХ", selected:ko.observable(true), sublist:[]},
-            {title: ko.observable("ГИДРОБОР 4"), selected:ko.observable(true), sublist:["ГИДРОБОР 4","ЕЩЕ ПУНКТ", "ВТОРОЙ", "ТРЕТИЙ"], focused:ko.observable(false),id:Math.random().toString(36).substr(2, 9)},
-            {title: "МЕДКНИЖКА", selected:ko.observable(true), sublist:[]},
-            {title: "РАСТЕНОВКА-ПОЛНАЯ", selected:ko.observable(true), sublist:[]},
-            {title: ko.observable("ПАНДУС 90"), selected:ko.observable(true), sublist:["ПАНДУС 90","ЕЩЕ ПУНКТ", "ВТОРОЙ", "ТРЕТИЙ"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9)},
-            {title: "СТАНДАРТ", selected:ko.observable(true), sublist:[]}
+            {title: "РАСТЕНТОВКА-ВЕРХ", selected:ko.observable(false), sublist:[]},
+            {title: ko.observable("ГИДРОБОР 4"), selected:ko.observable(false), sublist:["ГИДРОБОР 4","ЕЩЕ ПУНКТ", "ВТОРОЙ", "ТРЕТИЙ"], focused:ko.observable(false),id:Math.random().toString(36).substr(2, 9)},
+            {title: "МЕДКНИЖКА", selected:ko.observable(false), sublist:[]},
+            {title: "РАСТЕНОВКА-ПОЛНАЯ", selected:ko.observable(false), sublist:[]},
+            {title: ko.observable("ПАНДУС 90"), selected:ko.observable(false), sublist:["ПАНДУС 90","ЕЩЕ ПУНКТ", "ВТОРОЙ", "ТРЕТИЙ"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9)},
+            {title: "СТАНДАРТ", selected:ko.observable(false), sublist:[]}
         ],
         this.servicies = {title:"Услуги к заявке", selected:false, focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
          list:[
@@ -33,6 +33,46 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/dropdownlist'], func
         this.checkoutSVG = '<svg width="23" height="23" viewBox="0 -5 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">\
         <rect x="0.5" y="0.5" width="18" height="17" rx="4.5" fill="white" stroke="#C5C5C5"/>\
         </svg>',
+
+        this.validate = function(showAlert = true){
+            if(this.bodytypes.selected() === null)
+            {
+                if(showAlert)
+                utils.showAlert('Ошибка: ', 'Выберете тип кузова', 'alert-danger', '_' + utils.randId());
+                return;
+            }
+
+
+            ko.utils.arrayForEach(this.bodytypes.list, function(item){
+                if(item.sublist[item.selected()] === "РЕФ")
+                {
+                    if(showAlert)
+                    utils.showAlert('Инфо: ', 'Для рефрижератора нельзя убрать эту опцию', 'alert-info', '_' + utils.randId());
+                    ko.utils.arrayForEach(this.options, function(item){
+                        item.selected(true);
+                    });
+                }
+            }, this);
+        },
+
+        this.bodytypes.selected.subscribe(function(){
+            this.resetOptions();
+            
+            ko.utils.arrayForEach(this.servicies.list, function(item){
+                item.selected(false);
+            });
+        }, this),
+
+        this.resetOptions = function(){
+            ko.utils.arrayForEach(this.options, function(item){
+                item.selected(false);
+                if(typeof item.sublist !== "undefined" && item.sublist.length > 0)
+                {
+                    item.title(item.sublist[0])
+                }
+            });
+        },
+        
         this.showButton = function(self, event){
             for(var i = 0; i < self.options.length; i++)
             {
