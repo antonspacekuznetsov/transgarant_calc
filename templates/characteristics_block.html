@@ -9,7 +9,7 @@
         <div style="padding: 20px 20px 10px 20px;" class="cargo_info">
            
             <p data-bind="text: (title() === '' ? 'Наименование груза' : title() ) + ' (Ценность груза (' + (price() === '' ? '0' : price()) + ' ₽)'" style="font-family: Montserrat; font-style: normal;font-weight: bold; font-size: 16px; line-height: 19px;color: #7B7B7B;"></p>
-            <p style="font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 13px;line-height: 16px;color: #000000;" ></p>
+            <p data-bind="text: 'ОБЩИЙ ВЕС/ОБЪЕМ ГРУЗА' + quantity() + 'кг/' + ''" style="font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 13px;line-height: 16px;color: #000000;" ></p>
             
         </div>
         <div>
@@ -21,11 +21,11 @@
                     <p data-bind="style: {color: charactsCargo() === 0 ? 'white': 'black'}">Машино место</p>
                 </div>
             </div>
-            <div class="on_blok">            
+            <div data-bind="style: {float: charactsCargo() === 0 ? 'left' : 'right'}">            
                 <div style="float: right;">
                     <div style="float: left;">
                         <div class="char_input_name_cargo">
-                            <input data-bind="textInput:title, mask: {mask: 'A{1,40}', definitions: {'A':{validator:'[А-Яа-я ]'} }}" style="margin-left: -61px;" type="text" placeholder="Наименование груза">
+                            <input data-bind="textInput:title, style: {'margin-left': charactsCargo() === 0 ? '10px' : '-61px'}, mask: {mask: 'A{1,40}', definitions: {'A':{validator:'[А-Яа-я ]'} }}"  type="text" placeholder="Наименование груза">
                         </div>
                     </div>
                     <div style="float: right;">
@@ -34,6 +34,7 @@
                         </div>
                     </div>
                 </div>
+                <!--ko if: charactsCargo() === 1-->
                 <div style="float: left;">
                     <div>
                         <div class="evro_fon">
@@ -42,6 +43,7 @@
                         </div>
                     </div>
                 </div>
+                <!--/ko-->
             </div>
         </div>
         <div class="na_pal_wi">
@@ -57,12 +59,14 @@
             </div>
             <div class="kol_dl">
                 <div style="float: left;">
+                    <!--ko if: charactsCargo() === 1-->
                     <div style="float: left;" class="char_par_parent">
                         <div class="char_par">
                                 <p>Количество</p>
                             <input type="text" placeholder="0">
                         </div>
                     </div>
+                    <!--/ko-->
                     <div style="float: right;" class="char_par_parent">
                         <div class="char_par">
                                 <p>Длина</p>

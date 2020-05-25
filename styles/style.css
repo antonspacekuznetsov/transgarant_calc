@@ -253,6 +253,10 @@ color: #000000;
     border: 1px solid #FFB700;
     border-radius: 10px;
     display: flex;
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    margin-top: 10px;
 }
 .bodytype_racts
 {

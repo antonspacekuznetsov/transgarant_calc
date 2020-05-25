@@ -2,8 +2,8 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/dropdownlist'], func
     var viewModel = function(params){
         this.bodytypes = { selected: ko.observable(null), focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
         list:[
-            {img: "bodytype_close", title:"Кузов закрытый", style:'', sublist:["Любой закрытый","ФУРГОН","ЦМ","ИЗОТ","РЕФ"],selected: ko.observable(0)},
-            {img: "bodytype_open", title:"Кузов откытый", style:'margin: 5px 50px 8px;', sublist:["Любой открытый","Вариант 1","Вариант 2"],selected: ko.observable(0)}
+            {img: "bodytype_close", title:"Кузов закрытый", style:'margin: 5px 50px 8px;', sublist:["Любой закрытый","ФУРГОН","ЦМ","ИЗОТ","РЕФ"],selected: ko.observable(0)},
+            {img: "bodytype_open", title:"Кузов откытый", style:'', sublist:["Любой открытый","Вариант 1","Вариант 2"],selected: ko.observable(0)}
         ]},
         this.options = [
             {title: "РАСТЕНТОВКА-БОК", selected:ko.observable(false), sublist:[]},

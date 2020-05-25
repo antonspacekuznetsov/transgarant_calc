@@ -3,12 +3,16 @@ define(["ko", 'text!/templates/characteristics_block.html', "utils/customHandler
         this.charactsCargo = ko.observable(0);
         this.title = ko.observable('');
         this.price = ko.observable('');
-        this.quantity = ko.observable(null);
-        this.length = ko.observable(null);
-        this.width = ko.observable(null);
-        this.height = ko.observable(null);
-        this.weight = ko.observable(null);
+        this.quantity = ko.observable(0);
+        this.length = ko.observable(0);
+        this.width = ko.observable(0);
+        this.height = ko.observable(0);
+        this.weight = ko.observable(0);
+
+        this.volume = ko.computed(function(){return this.length * this.height * this.weight });
     };
+
+
     ko.components.register('characteristics_block', {
         viewModel: viewModel,
         template: template
