@@ -29,16 +29,23 @@ define(["jquery", "bootstrap.alert"], function($){
               return timer; // return the interval timer, so you can clear it elsewhere
             };
           }()),
-
+      counter:0,
       showAlert: function(title, msg, cls, id, timeout = 4000){
+        if(this.counter > 5)
+        {
+          return;
+        }
+        this.counter++;
         var html = '<div id="' + id +'" class="alert ' + cls +' fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>' + title + '</strong>' + msg +'</div>';
         $('.container-alerts').html(html + $('.container-alerts').html());
-        setTimeout(this.hideAlert, timeout, id);
+        setTimeout(this.hideAlert, timeout, id, this);
       },
 
-      hideAlert: function(id){
+      hideAlert: function(id, self){
+          self.counter--;
           $( "#" + id ).fadeTo( "slow" , 0.1, function() {
               $("#" + id ).alert("close");
+              $( "#" + id ).remove();
             });
       },
 
