@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <!--ko if: charactsCargo() === 1-->
+                <!--ko if: charactsCargo() === 1 || charactsCargo() === 2 -->
                 <div style="float: left;">
                     <div>
                         <div class="evro_fon">
@@ -57,9 +57,9 @@
                     <p data-bind="style: {color: charactsCargo() === 2 ? 'white': 'black'}">Упаковки</p>
                 </div>
             </div>
-            <div class="kol_dl">
-                <div style="float: left;">
-                    <!--ko if: charactsCargo() === 1-->
+            <div class="kol_dl" data-bind="style: {float: charactsCargo() === 0 ? 'left' : 'right'}">
+                <div style="float: left;" data-bind="style:{'margin-left': charactsCargo() === 0 ? '20px' : '-15px'}">
+                    <!--ko if: charactsCargo() === 1 || charactsCargo() === 2 -->
                     <div style="float: left;" class="char_par_parent">
                         <div class="char_par">
                                 <p>Количество</p>

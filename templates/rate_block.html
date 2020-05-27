@@ -7,29 +7,29 @@
 
 <!-- pricing block -->
 <div class="row block_up">
-    <div style="width: 390px; height: 116px;;" class="col-sm-4"> 
-        <div class="background_pricing_orange">
-            <p class="name_blok_rates">Часовая аренда  - 3000 р</p>
-            <span class="text_rates">минимум <b>3000 р</b> (437р - час  4 часа работы + час подачи + + )</span>
+    <div data-bind="click: function(){rate(0);}" style="width: 390px; height: 116px;cursor: pointer;" class="col-sm-4"> 
+        <div  data-bind="attr: {'class': rate() === 0 ? 'background_pricing_orange' : 'background_pricing_white'}">
+            <p  data-bind="attr: {'class': rate() === 0 ? 'name_blok_rates' : 'name_rates_black'}">Часовая аренда  - 3000 р</p>
+            <span data-bind="attr: {'class': rate() === 0 ? 'text_rates' : 'text_black'}">минимум <b>3000 р</b> (437р - час  4 часа работы + час подачи + + )</span>
         </div>
     </div> 
-    <div style="width: 390px;height: 116px;;" class="col-sm-4 transfer_blok2">
-        <div class="background_pricing_white">                        
+    <div data-bind="click:function(){rate(1);}" style="width: 390px;height: 116px;cursor: pointer;" class="col-sm-4 transfer_blok2">
+        <div data-bind="attr: {'class': rate() === 1 ? 'background_pricing_orange' : 'background_pricing_white'}">                        
             <div style="width: 145px;float: left;">   
-                <p class="name_rates_black">Ставка  - 3000 р</p>
-                <span class="text_black">ставка <b>2800 р</b> (условия)</span>
+                <p data-bind="attr: {'class': rate() === 1 ? 'name_blok_rates' : 'name_rates_black'}">Ставка  - 3000 р</p>
+                <span data-bind="attr: {'class': rate() === 1 ? 'text_rates' : 'text_black'}">ставка <b>2800 р</b> (условия)</span>
             </div>
             <div>                   
                 <img style="height: 70px;" src="images/Line 11.png">                      
-                <span style="padding-left:15px;" class="text_black">Cтавка ПМ 2800 р</span>                            
-                <img style="padding-left:5px;" src="images/Rectangle.png">
+                <span style="padding-left:15px;" data-bind="attr: {'class': rate() === 1 ? 'text_rates' : 'text_black'}">Cтавка ПМ 2800 р</span>                            
+                <img  data-bind="click:function(){pm(!pm())}, attr: {src: pm() ? 'images/Rectangle.png' : 'images/Rectangle 47.png'}" style="padding-left:5px;">
             </div>              
         </div>
     </div>
-    <div  style="width: 390px;height: 116px;" class="col-sm-4 transfer_blok">  
-        <div class="background_pricing_white">            
-                <p class="name_rates_black">Доставка  - 3000 р</p>
-                <span class="text_black">доставка 2000 р (условия) (для тарифа доставка нужно внести данные по грузу)</span>            
+    <div data-bind="click:function(){rate(2);}" style="width: 390px;height: 116px;cursor: pointer;" class="col-sm-4 transfer_blok">  
+        <div data-bind="attr: {'class': rate() === 2 ? 'background_pricing_orange' : 'background_pricing_white'}">            
+                <p data-bind="attr: {'class': rate() === 2 ? 'name_blok_rates' : 'name_rates_black'}">Доставка  - 3000 р</p>
+                <span data-bind="attr: {'class': rate() === 2 ? 'text_rates' : 'text_black'}">доставка 2000 р (условия) (для тарифа доставка нужно внести данные по грузу)</span>            
         </div>
     </div>
 </div>
@@ -37,7 +37,7 @@
 <!-- text -->
 <div  class="row">
     <div class="col-sm-12 tex_up">
-        <img src="images/info-button 10.png">
+        <!--<img src="images/info-button 10.png">-->
         <span class="slyb_text">Служебная информация</span>
     </div> 
     <div class="col-sm-12">
@@ -148,18 +148,18 @@
 <!--name rates -->
 <div class="row fon_pay">
     <div class="col-sm-4 srf_op">
-        <img src="images/Rectangle.png">
+        <img style="cursor: pointer;" data-bind="click:function(){paymentType(0)}, attr:{src: paymentType() === 0 ? 'images/Rectangle.png' : 'images/Rectangle 47.png'}">
         <span class="text_pay">Онлайн оплата</span>
-        <img src="images/info-button 10.png">         
+      <!--  <img  src="images/info-button 10.png"> -->        
     </div> 
     <div class="col-sm-4 text_al_c srf_op">
-        <img src="images/Rectangle 47.png">
+        <img style="cursor: pointer;" data-bind="click:function(){paymentType(1)}, attr:{src: paymentType() === 1 ? 'images/Rectangle.png' : 'images/Rectangle 47.png'}">
         <span class="text_pay">Наличными исполнителю</span> 
-        <img src="images/info-button 10.png">            
+       <!-- <img src="images/info-button 10.png">     -->       
     </div>
     <div class="col-sm-4 text_al_r srf_op">
-        <img src="images/Rectangle 47.png">
+        <img style="cursor: pointer;" data-bind="click:function(){paymentType(2)}, attr:{src: paymentType() === 2 ? 'images/Rectangle.png' : 'images/Rectangle 47.png'}" src="images/Rectangle 47.png">
         <span class="text_pay">Оплата по счету</span>  
-        <img src="images/info-button 10.png">           
+        <!--<img src="images/info-button 10.png">      -->     
     </div>   
 </div>

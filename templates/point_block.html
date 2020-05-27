@@ -2,10 +2,10 @@
 <div data-bind="click:function(){validate();}, scroll:'.background_route'" style="position: absolute;z-index:3000;width: 100%; height: 100%;"></div>
 <!--/ko-->
 <div class="map_ya">
-    <span data-bind="click:function(){$('.map_ya').css('display','none'), preSelectedaddressFromMap(null)}" class="glyphicon glyphicon-remove close_map" aria-hidden="true"></span>
+    <span data-bind="click:function(){$('.map_ya').css('display','none'); preSelectedaddressFromMap(null);}" class="glyphicon glyphicon-remove close_map" aria-hidden="true"></span>
     <div id="map"></div>
     <p data-bind="text:preSelectedaddressFromMap();" style="color:white;"></p>
-    <input data-bind="click:function(){address(preSelectedaddressFromMap());$('.map_ya').css('display','none')}" type="button" name="selectCoords" value="Выбрать">
+    <input data-bind="click:function(){$('.map_ya').css('display','none')}" type="button" id="selectCoords" value="Выбрать">
 </div>
 
     <!-- name blok -->
@@ -35,9 +35,9 @@
         <div class="col-sm-7 background_point">
             <div class="text_time" data-bind="text:editMode.turned() ? 'Редактирование: Точка ' + (editMode.pointNumber + 1) : ('Точка ' + (removedList().length > 0 ?  (removedList()[0] + 1) : (points().length + 1)))"></div>
             <div class="adress" data-bind="style: {'border-color': address() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
-                <input data-bind="address:init, textInput:address" type="text" style="width:400px;" class="hide_input" placeholder="Адрес">
+                <input id="address_input" data-bind="address:init, value: address" type="text" style="width:400px;" class="hide_input" placeholder="Адрес">
                 <div class="text_right">
-                    <a  style="cursor: pointer;" data-bind="click: function(){$('.map_ya').css('display','block')}" class="text_map">Выбрать на карте</a>
+                    <a id="mapOn" style="cursor: pointer;" data-bind="click: function(){$('.map_ya').css('display','block')}" class="text_map">Выбрать на карте</a>
                     <img src="images/placeholder 1.png">
                 </div>
             </div>

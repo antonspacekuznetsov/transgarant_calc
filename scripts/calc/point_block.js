@@ -6,7 +6,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         this.moment = moment,
         this.editMode = {turned:ko.observable(false), pointNumber:null},
         this.dateOrder = ko.observable(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), 0, 0)),
-        this.coords = ko.observable({x: null, y: null}),
+        this.coords = ko.observable([]),
         this.preSelectedaddressFromMap = ko.observable(null),
         this.address = ko.observable(''),
         this.commentToAddress = ko.observable(''),
@@ -15,7 +15,8 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         this.company = ko.observable(''),
         this.tel = ko.observable(''),
         this.file = ko.observable(false),
-        this.fileName = ''
+        this.fileName = '',
+        this.dataGotFromMapOrDadata = false,
 
         this.workTimeFrom = ko.observable(new Date(2020, 0, 1, 9, 0)),
         this.workTimeTill = ko.observable(new Date(2020, 0, 1, 18, 0)),
@@ -31,8 +32,10 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
 
         this.removedList = ko.observableArray([]),
         this.addPoint = function(){
-            if(this.address() === '' && this.fio() === '' && this.tel() ==='' && this.company() === ''){
+            if(this.address() === '' || this.fio() === '' || this.tel() === '' || this.company() === ''){
                 this.isAllFilled(false);
+                var msg = 'Заполните следующие поля:<br>' + (this.address() === '' ? 'Адрес;<br>' : '') + (this.fio() === '' ? 'Ф.И.О.;<br>' : '') + (this.tel() === '' ? 'Телефон;<br>' : '') + (this.company() === '' ? 'В какую компанию по адресу;' : '');
+                utils.showAlert('Ошибка: ', msg, 'alert-danger', '_' + utils.randId(), 7000);
                 return;
             }
             else
@@ -65,7 +68,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
 
         this.clear = function(){
             $(".adress>input").each(function(){$(this).val('');});
-            this.coords({x: null, y: null});
+            this.coords([]);
             this.preSelectedaddressFromMap(null);
             this.address('');
             this.commentToAddress('');
@@ -147,12 +150,24 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         this.checkoutSVG = '<svg width="23" height="23" viewBox="0 -5 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">\
         <rect x="0.5" y="0.5" width="18" height="17" rx="4.5" fill="white" stroke="#C5C5C5"/>\
         </svg>',
-        
-        this.map = null,
-        this.placeMark = null,
 
+
+        (function(self){
+            var fn = function(){
+                if(!this.dataGotFromMapOrDadata && this.address() !== '')
+                {
+                    utils.showAlert('Ошибка: ', 'Выберете адрес из подсказок или на карте', 'alert-danger', '_' + utils.randId());
+                    this.coords([]);
+                    this.address('');
+                   // $("#address_input").focus();
+                    //$("address_input").val('');
+                }
+                this.dataGotFromMapOrDadata = false;
+            };
+            $("#address_input").blur(fn.bind(self));
+        })(this),
         (function(self){data.set_context({point:self});})(this),
-        (function(self){ ymaps.ready(self.map = init.bind(self));})(this)
+        (function(self){ ymaps.ready(init.bind(self, [55.753994, 37.622093]));})(this)
     }
 
     ko.components.register('point_block', {

@@ -11,14 +11,21 @@ define(["ko", 'jquery', 'utils/utils', 'inputMask'], function(ko, $, utils){
       });
     ko.bindingHandlers.address = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-            $(element).suggestions({
-                token: "83f773b56f1b02b1e161353ab650a6b7f6a5c9db",
-                type: "ADDRESS",
-                /* Вызывается, когда пользователь выбирает одну из подсказок */
-                onSelect: function(suggestion) {
-                    console.log(suggestion);
+            var func = (function(){
+                var context = viewModel;
+                return function(){
+                    this.token =  "83f773b56f1b02b1e161353ab650a6b7f6a5c9db",
+                    this.type = "ADDRESS",
+                    this.onSelect = function(suggestion){
+                        console.log(suggestion);
+                        context.dataGotFromMapOrDadata = true;
+                        context.address(suggestion.value);
+                        context.coords([parseFloat(suggestion.data.geo_lat), parseFloat(suggestion.data.geo_lon)]);
+                    }
                 }
-            });
+            })();
+
+            $(element).suggestions(new func());
         }
     };
     

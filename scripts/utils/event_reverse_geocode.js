@@ -1,10 +1,10 @@
-define(["ymaps"], function(ymaps){
+define(["ymaps", "jquery"], function(ymaps, $){
     
-function init() {
+function init(coords) {
     var self = this;
     var myPlacemark,
         myMap = new ymaps.Map('map', {
-            center: [55.753994, 37.622093],
+            center: coords,
             zoom: 9
         }, {
             searchControlProvider: 'yandex#search'
@@ -30,10 +30,50 @@ function init() {
         getAddress(coords);
     });
 
+    $(".close_map").click(function(){
+        if (myPlacemark && self.coords().length === 0) {
+            myMap.geoObjects.remove(myPlacemark);
+            myPlacemark = null;
+            myMap.setCenter([55.753994, 37.622093], 9)
+        }
+
+    });
+
+    $("#mapOn").click(function(){
+        if(self.coords().length > 0)
+        {
+            if (myPlacemark) {
+                myPlacemark.geometry.setCoordinates(self.coords());
+                myMap.setCenter(self.coords(), 15)
+            }
+            else 
+            {
+                myPlacemark = createPlacemark(self.coords());
+                myMap.geoObjects.add(myPlacemark);
+                myMap.setCenter(self.coords(), 15)
+                
+
+            }
+            getAddress(myPlacemark.geometry.getCoordinates());
+        }
+
+        if (myPlacemark && self.coords().length === 0) {
+            myMap.geoObjects.remove(myPlacemark);
+            myPlacemark = null;
+            myMap.setCenter([55.753994, 37.622093], 9)
+        }
+    });
+
+    $("#selectCoords").click(function(){
+        self.dataGotFromMapOrDadata = true;
+        self.address(myPlacemark.properties._data.balloonContent);
+        self.coords(myPlacemark.geometry._coordinates);
+    });
+
     // Создание метки.
-    function createPlacemark(coords) {
+    function createPlacemark(coords, iconCaption = 'поиск...') {
         return new ymaps.Placemark(coords, {
-            iconCaption: 'поиск...'
+            iconCaption: iconCaption
         }, {
             preset: 'islands#violetDotIconWithCaption',
             draggable: true
@@ -60,11 +100,6 @@ function init() {
                 self.preSelectedaddressFromMap(myPlacemark.properties._data.balloonContent);
         });
 
-    }
-    return function(){
-        this.get = function(){
-            return myMap;
-        }
     }
 }
     return init;
