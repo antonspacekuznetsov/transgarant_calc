@@ -61,6 +61,11 @@ function init() {
         });
 
     }
+    return function(){
+        this.get = function(){
+            return myMap;
+        }
+    }
 }
     return init;
 });

@@ -1,3 +1,6 @@
+<!--ko if: c().bodytypes.selected() === null-->
+<div data-bind="click:function(){validate();}, scroll:'.background_route'" style="position: absolute;z-index:3000;width: 100%; height: 100%;"></div>
+<!--/ko-->
 <div class="map_ya">
     <span data-bind="click:function(){$('.map_ya').css('display','none'), preSelectedaddressFromMap(null)}" class="glyphicon glyphicon-remove close_map" aria-hidden="true"></span>
     <div id="map"></div>

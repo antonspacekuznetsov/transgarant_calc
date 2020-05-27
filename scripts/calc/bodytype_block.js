@@ -1,4 +1,4 @@
-define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'utils/dropdownlist'], function(ko, template, utils){
+define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'calc/data', 'utils/dropdownlist'], function(ko, template, utils, data){
     var viewModel = function(params){
         this.bodytypes = { selected: ko.observable(null), focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
         list:[
@@ -61,6 +61,7 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'utils/dropd
             ko.utils.arrayForEach(this.servicies.list, function(item){
                 item.selected(false);
             });
+
         }, this),
 
         this.resetOptions = function(){
@@ -104,6 +105,7 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'utils/dropd
             }
 
         },
+       (function(self){data.set_context({bodytype:self});})(this),
        (function(self){document.addEventListener( "click" , function(event){self.showButton(self, event)});})(this)
  };
 
