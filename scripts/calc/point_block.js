@@ -167,7 +167,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             $("#address_input").blur(fn.bind(self));
         })(this),
         (function(self){data.set_context({point:self});})(this),
-        (function(self){ ymaps.ready(init.bind(self, [55.753994, 37.622093]));})(this)
+        (function(self){ ymaps.ready(init.bind(self));})(this)
     }
 
     ko.components.register('point_block', {

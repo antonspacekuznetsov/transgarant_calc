@@ -1,10 +1,10 @@
 define(["ymaps", "jquery"], function(ymaps, $){
     
-function init(coords) {
+function init() {
     var self = this;
     var myPlacemark,
         myMap = new ymaps.Map('map', {
-            center: coords,
+            center: [55.753994, 37.622093],
             zoom: 9
         }, {
             searchControlProvider: 'yandex#search'
