@@ -61,10 +61,11 @@
                 <div class="adress pozis_lef">
                     <input  data-bind="textInput:toDo" type="text" style="width:100%;height:16px;" class="hide_input" placeholder="Что нужно сделать по адресу">                
                 </div>                
-                <div class="adress pozis_righ adress_fon">
+                <div data-bind="click:function(){$('#file').click();}" class="adress pozis_righ adress_fon" style="cursor: pointer;">
                     <img src="images/doc1.png">
-                    <span class="text_point">Прикрепить файл</span>                
+                    <span class="text_point">Прикрепить файл</span>             
                 </div>
+                <input id="file" name="myFile" type="file" style="display:none;"> 
             </div>                        
         </div> 
         <div class="col-sm-5 background_time">             
@@ -81,14 +82,13 @@
             <div style="margin-bottom: 30px; margin-top: 90px;">
                 <span class="pererv">Перерыв</span>
                 <span data-bind="html: isBreak() ? checkinSVG : checkoutSVG, click:function(){isBreak(!isBreak())}" style="cursor: pointer;"></span>
-                <span class="noy" style="cursor: pointer;" data-bind="click:function(){isBreak(!isBreak())}, text: isBreak() ? 'Нет' : 'Да'">Нет</span>
             </div> 
             <div>
-                <div class="adress pozis_lef tim">
-                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeFrom, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeFrom().getHours()).slice(-2) + ':' + ('0' + breakTimeFrom().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">                            
+                <div data-bind="style: {'background-color' : isBreak() ? '' : '#eaeaea'}" class="adress pozis_lef tim">
+                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeFrom, style: {'background-color' : isBreak() ? '' : '#eaeaea'}, enable:isBreak(), dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeFrom().getHours()).slice(-2) + ':' + ('0' + breakTimeFrom().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">                            
                 </div>                
-                <div class="adress pozis_righ tim">
-                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeTill, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeTill().getHours()).slice(-2) + ':' + ('0' + breakTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="до 18.00">                                           
+                <div data-bind="style: {'background-color' : isBreak() ? '' : '#eaeaea'}"  class="adress pozis_righ tim">
+                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeTill, style: {'background-color' : isBreak() ? '' : '#eaeaea'}, enable:isBreak(), dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeTill().getHours()).slice(-2) + ':' + ('0' + breakTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="до 18.00">                                           
                 </div>
             </div>
             <div style="background: #FFFFFF;border: 1px solid #C5C5C5;box-sizing: border-box;border-radius: 10px;margin-top: 139px;padding: 20px;margin-bottom: 5px;">

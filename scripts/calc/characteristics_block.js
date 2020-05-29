@@ -1,5 +1,5 @@
-define(["ko", 'text!/templates/characteristics_block.html', "utils/customHandlers"], function(ko, template){
-    var viewModel = function(params){
+define(["ko", 'text!/templates/characteristics_block.html','calc/data', "utils/customHandlers"], function(ko, template, data){
+    var viewModel = function(){
         this.charactsCargo = ko.observable(0);
         this.title = ko.observable('');
         this.price = ko.observable('');
@@ -10,6 +10,8 @@ define(["ko", 'text!/templates/characteristics_block.html', "utils/customHandler
         this.weight = ko.observable(0);
 
         this.volume = ko.computed(function(){return this.length * this.height * this.weight });
+
+        (function(self){data.set_context({characteristics:self});})(this)
     };
 
 

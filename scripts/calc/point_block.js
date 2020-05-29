@@ -169,7 +169,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         (function(self){data.set_context({point:self});})(this),
         (function(self){ ymaps.ready(init.bind(self));})(this)
     }
-
+    
     ko.components.register('point_block', {
         viewModel: viewModel,
         template: template
