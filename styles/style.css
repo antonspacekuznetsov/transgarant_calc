@@ -330,7 +330,7 @@ background: #FFFFFF;
 border: 1px solid #FFB700;
 box-sizing: border-box;
 border-radius: 10px;
-
+outline: none;
 width: 257px;
 margin:9px;
 padding: 15px;

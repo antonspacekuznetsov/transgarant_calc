@@ -1,9 +1,19 @@
+<!--ko if: $parent.enable()-->
+  <div class="dropdown">
+      <button data-bind="click:function(){if($parent.enable()){$parent.focused(true)}}, style:{display : $parent.focused() ? 'none' : ''}, attr:{id:$parent.id}" style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;width: 100%;text-align: left;outline: none;" class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <!-- ko text:$parent.title().substring(0, $parent.title().indexOf('<')).length === 0 ? $parent.title() : $parent.title().substring(0, $parent.title().indexOf('<')) --><!--/ko-->
+        <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
+      </button>
+      <ul style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;margin-top: -17px;padding: 5px 3px;width: 100%;" class="dropdown-menu" aria-labelledby="dropdownMenu1" data-bind="foreach:$parent.sublist">
+              <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].title() === $data ? 'b8b8b8' : ''}, html:$data, click:function(){$parents[1].title($data);$parents[1].focused(false);}" ></a></li>    
+      </ul>
+  </div>
+<!--/ko-->
+<!--ko ifnot: $parent.enable()-->
 <div class="dropdown">
-    <button data-bind="click:function(){$parent.focused(true)}, style:{display : $parent.focused() ? 'none' : ''}, attr:{id:$parent.id}" style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;width: 100%;text-align: left;outline: none;" class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <!-- ko text:$parent.title--><!--/ko-->
-      <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
-    </button>
-    <ul style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;margin-top: -17px;padding: 5px 3px;width: 100%;" class="dropdown-menu" aria-labelledby="dropdownMenu1" data-bind="foreach:$parent.sublist">
-            <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].title() === $data ? 'b8b8b8' : ''}, text:$data, click:function(){$parents[1].title($data);$parents[1].focused(false);}" ></a></li>    
-    </ul>
+  <button  style="border: 1px solid rgb(214, 214, 214);border-radius: 14px;width: 100%;text-align: left;outline: none;background-color: #eaeaea;" class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+     <!-- ko text:$parent.title().substring(0, $parent.title().indexOf('<')).length === 0 ? $parent.title() : $parent.title().substring(0, $parent.title().indexOf('<')) --><!--/ko-->
+    <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
+  </button>
 </div>
+<!--/ko-->
