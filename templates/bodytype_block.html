@@ -21,7 +21,7 @@
           <tbody data-bind="foreach: options">
             <tr>
                 <!-- ko if: $index() < 4-->
-                <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate();}"></td>
+                <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
                 <!--ko if: sublist.length > 0-->
                 <td>
                     <!-- ko component: 'dropdownlist' --><!-- /ko -->   
@@ -38,7 +38,7 @@
         <tbody data-bind="foreach: options">
             <tr>
                 <!-- ko if: $index() > 3-->
-                <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate();}"></td>
+                <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
                 <!--ko if: sublist.length > 0-->
                 <td>
                 <div class="dropdown">
@@ -74,7 +74,7 @@
             <ul class="dropdown-menu listbodytype"  aria-labelledby="dropdownMenu1" data-bind="foreach:bodytypes.list">
                 <!--ko foreach: sublist-->
                     <!-- ko if: $parents[1].bodytypes.selected() === $parentContext.$index() -->
-                    <li><a href="#" data-bind="text:$data, click:function(){$parents[1].bodytypes.list[$parentContext.$index()].selected($index()); $parents[1].bodytypes.focused(false); $parents[1].resetOptions(); $parents[1].validate(false);}"></a></li>
+                    <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].bodytypes.list[$parentContext.$index()].selected() === $index() ? 'b8b8b8' : ''}, text:$data, click:function(){$parents[1].bodytypes.list[$parentContext.$index()].selected($index()); $parents[1].bodytypes.focused(false); $parents[1].resetOptions(); $parents[1].setSelectedRules($index());}"></a></li>
                     <!--/ko-->
                 <!--/ko-->
             </ul>

@@ -14,7 +14,7 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 1 до 1"},
                 {title:"Объем", info: "от 1 до 2.7"},
                 {title:"Площадь", info: "от	1 до 2.3"},
-                {title:"Паштеты", info: "от	1 до 5"},
+                {title:"Паллеты", info: "от	0 до 1"},
                 {title:"Пандус", info: "нет"},
                 {title:"ГидроЛифт", info: "нет"},
                 {title:"БОРТ", info: "нет"},
@@ -34,8 +34,8 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 1.4 до 1.7"},
                 {title:"Объем", info: "от 3.2 до 7"},
                 {title:"Площадь", info: "от 2.6 до 5.4"},
-                {title:"Паштеты", info: "-"},
-                {title:"Пандус", info: "нет"},
+                {title:"Паллеты", info: "от 1 до 3"},
+                {title:"Пандус", info: "да"},
                 {title:"ГидроЛифт", info: "нет"},
                 {title:"БОРТ", info: "нет"},
                 {title:"РЕФ", info: "нет"},
@@ -54,9 +54,9 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от от 1.6 до 2"},
                 {title:"Объем", info: "от 7.1 до 12.8"},
                 {title:"Площадь", info: "от 4 до 6.4"},
-                {title:"Паштеты", info: "-"},
-                {title:"Пандус", info: "нет"},
-                {title:"ГидроЛифт", info: "нет"},
+                {title:"Паллеты", info: "от 3 до 4"},
+                {title:"Пандус", info: "да"},
+                {title:"ГидроЛифт", info: "да"},
                 {title:"БОРТ", info: "да"},
                 {title:"РЕФ", info: "да"},
                 {title:"ПРОПУСК", info: "МКАД"}
@@ -74,11 +74,10 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 1.6 до 2"},
                 {title:"Объем", info: "от 9.5 до 16.8"},
                 {title:"Площадь", info: "от 5.9 до 8.4"},
-                {title:"Паштеты", info: "-"},
-                {title:"Пандус", info: "нет"},
+                {title:"Пандус", info: "да"},
                 {title:"ГидроЛифт", info: "нет"},
-                {title:"БОРТ", info: "да"},
-                {title:"РЕФ", info: "да"},
+                {title:"БОРТ", info: "нет"},
+                {title:"РЕФ", info: "нет"},
                 {title:"ПРОПУСК", info: "МКАД"}
 
             ]
@@ -94,8 +93,7 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 1.9 до 2.2"},
                 {title:"Объем", info: "от 11.9 до 20.3"},
                 {title:"Площадь", info: "от 6.3 до 9.2"},
-                {title:"Паштеты", info: "от	1 ДО 5"},
-                {title:"Пандус", info: "нет"},
+                {title:"Пандус", info: "да"},
                 {title:"ГидроЛифт", info: "нет"},
                 {title:"БОРТ", info: "да"},
                 {title:"РЕФ", info: "да"},
@@ -114,9 +112,8 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 1.7 до 2.3"},
                 {title:"Объем", info: "от 14 до 31.7"},
                 {title:"Площадь", info: "от 7.1 до 13.7"},
-                {title:"Паштеты", info: "-"},
-                {title:"Пандус", info: "нет"},
-                {title:"ГидроЛифт", info: "нет"},
+                {title:"Пандус", info: "да"},
+                {title:"ГидроЛифт", info: "да"},
                 {title:"БОРТ", info: "да"},
                 {title:"РЕФ", info: "да"},
                 {title:"ПРОПУСК", info: "МКАД"}
@@ -134,12 +131,10 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 2.2 до 2.45"},
                 {title:"Объем", info: "от 26.3 до 34.5"},
                 {title:"Площадь", info: "от 11.9 до 14"},
-                {title:"Паштеты", info: "-"},
-                {title:"Пандус", info: "нет"},
-                {title:"ГидроЛифт", info: "нет"},
-                {title:"БОРТ", info: "нет"},
-                {title:"РЕФ", info: "нет"},
-                {title:"ПРОПУСК", info: "-"}
+                {title:"Пандус", info: "да"},
+                {title:"ГидроЛифт", info: "да"},
+                {title:"БОРТ", info: "да"},
+                {title:"РЕФ", info: "да"}
 
             ]
         },
@@ -154,12 +149,10 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 2.4 до 2.45"},
                 {title:"Объем", info: "от 35.7 до 45"},
                 {title:"Площадь", info: "от 14.8 до 18.3"},
-                {title:"Паштеты", info: "-"},
-                {title:"Пандус", info: "нет"},
-                {title:"ГидроЛифт", info: "нет"},
+                {title:"Пандус", info: "да"},
+                {title:"ГидроЛифт", info: "да"},
                 {title:"БОРТ", info: "нет"},
-                {title:"РЕФ", info: "нет"},
-                {title:"ПРОПУСК", info: "-"}
+                {title:"РЕФ", info: "нет"}
 
             ]
         },
@@ -174,12 +167,10 @@ define(["ko", 'text!/templates/category_block.html', "utils/popup"], function(ko
                 {title:"Высота", info: "от 2.45 до 2.50"},
                 {title:"Объем", info: "от 48.5 до 82"},
                 {title:"Площадь", info: "от 23 до 33"},
-                {title:"Паштеты", info: "-"},
-                {title:"Пандус", info: "нет"},
+                {title:"Пандус", info: "да"},
                 {title:"ГидроЛифт", info: "нет"},
                 {title:"БОРТ", info: "да"},
-                {title:"РЕФ", info: "да"},
-                {title:"ПРОПУСК", info: "-"}
+                {title:"РЕФ", info: "да"}
 
             ]
         },

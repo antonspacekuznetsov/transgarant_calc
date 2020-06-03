@@ -763,6 +763,10 @@ text-transform: capitalize;
 color: #7B7B7B;
 }
 
+.list_elem{
+    border-radius: 14px;
+}
+
 .cargo_char{
     font-family: Montserrat;
 font-style: normal;

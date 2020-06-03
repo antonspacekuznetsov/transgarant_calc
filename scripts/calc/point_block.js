@@ -5,7 +5,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
     var viewModel = function(){
         this.moment = moment,
         this.editMode = {turned:ko.observable(false), pointNumber:null},
-        this.dateOrder = ko.observable(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), 0, 0)),
+        this.dateOrder = ko.observable(moment().minutes(0).hour(9)),
         this.coords = ko.observable([]),
         this.preSelectedaddressFromMap = ko.observable(null),
         this.address = ko.observable(''),
@@ -36,6 +36,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
                 this.isAllFilled(false);
                 var msg = 'Заполните следующие поля:<br>' + (this.address() === '' ? 'Адрес;<br>' : '') + (this.fio() === '' ? 'Ф.И.О.;<br>' : '') + (this.tel() === '' ? 'Телефон;<br>' : '') + (this.company() === '' ? 'В какую компанию по адресу;' : '');
                 utils.showAlert('Ошибка: ', msg, 'alert-danger', '_' + utils.randId(), 7000);
+                utils.smoothScroll($('#point__block').offset().top, 500);
                 return;
             }
             else

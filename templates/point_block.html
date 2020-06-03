@@ -16,7 +16,7 @@
         <div class="col-sm-9 category_time">  
                 
 
-                <div data-bind="dateTimePicker:dateOrder, dateTimePickerOptions:{sideBySide: true, locale: 'ru'}" class='input-group date'>
+                <div data-bind="dateTimePicker:dateOrder, dateTimePickerOptions:{sideBySide: true, locale: 'ru', daysOfWeekDisabled:[0,6], minDate: new Date()}" class='input-group date'>
                 <input type='text' class="form-control" style="width: 0px; padding: 0px;border: 0px;" />
                 <span class="input-group-addon" style="border: 0px;background: none;width: 100%;">
                     <span> 

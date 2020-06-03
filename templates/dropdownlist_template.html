@@ -4,8 +4,6 @@
       <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
     </button>
     <ul style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;margin-top: -17px;padding: 5px 3px;width: 100%;" class="dropdown-menu" aria-labelledby="dropdownMenu1" data-bind="foreach:$parent.sublist">
-        <!--ko if: $parents[1].title() !== $data-->
-            <li><a href="#" data-bind="text:$data, click:function(){$parents[1].title($data);$parents[1].focused(false);}"></a></li>
-        <!--/ko-->
+            <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].title() === $data ? 'b8b8b8' : ''}, text:$data, click:function(){$parents[1].title($data);$parents[1].focused(false);}" ></a></li>    
     </ul>
 </div>

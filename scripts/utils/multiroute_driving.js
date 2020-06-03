@@ -31,6 +31,8 @@ define(["ymaps", "jquery", 'calc/data', 'utils/utils'], function(ymaps, $, data,
                 zoom: 7
             });
             myMap.geoObjects.add(multiRoute);
+            myMap.behaviors.disable(['scrollZoom', "drag", "dblClickZoom", "multiTouch"]);
+            myMap.controls.remove("fullscreenControl").remove("zoomControl");
         }
 
 

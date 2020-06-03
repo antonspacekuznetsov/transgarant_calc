@@ -2,16 +2,22 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'calc/data',
     var viewModel = function(params){
         this.bodytypes = { selected: ko.observable(null), focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
         list:[
-            {img: "bodytype_close", title:"Кузов закрытый", style:'margin: 5px 50px 8px;', sublist:["Любой закрытый","ФУРГОН","ЦМ","ИЗОТ","РЕФ"],selected: ko.observable(0)},
-            {img: "bodytype_open", title:"Кузов откытый", style:'', sublist:["Любой открытый","Вариант 1","Вариант 2"],selected: ko.observable(0)}
+            {img: "bodytype_close", title:"Кузов закрытый", style:'margin: 5px 50px 8px;', sublist:["Любой закрытый","ФУРГОН","ЦМ","ИЗОТЕРМ","РЕФ"],selected: ko.observable(0)},
+            {img: "bodytype_open", title:"Кузов откытый", style:'', sublist:["Любой открытый"],selected: ko.observable(0)}
         ]},
+        this.selectRules = [
+            {title:"ФУРГОН", mustBe: true, only:"yes", list:[2,5,3] },
+            {title:"ЦМ", mustBe: true, only:"yes", list:[3] },
+            {title:"ИЗОТЕРМ", mustBe: true, only:"yes", list:[2,5,3] },
+            {title:"РЕФ", mustBe: true, only:"yes", list:[5,2,3] }
+        ],
         this.options = [
             {title: "РАСТЕНТОВКА-БОК", selected:ko.observable(false), sublist:[]},
             {title: "РАСТЕНТОВКА-ВЕРХ", selected:ko.observable(false), sublist:[]},
-            {title: ko.observable("ГИДРОБОР 4"), selected:ko.observable(false), sublist:["ГИДРОБОР 4","ЕЩЕ ПУНКТ", "ВТОРОЙ", "ТРЕТИЙ"], focused:ko.observable(false),id:Math.random().toString(36).substr(2, 9)},
+            {title: ko.observable("ГИДРОБОР 4"), selected:ko.observable(false), sublist:["ГИДРОБОР 400", "ГИДРОБОР 500", "ГИДРОБОР 600", "ГИДРОБОР 700", "ГИДРОБОР 800", "ГИДРОБОР 900", "ГИДРОБОР 1000"], focused:ko.observable(false),id:Math.random().toString(36).substr(2, 9)},
             {title: "МЕДКНИЖКА", selected:ko.observable(false), sublist:[]},
             {title: "РАСТЕНОВКА-ПОЛНАЯ", selected:ko.observable(false), sublist:[]},
-            {title: ko.observable("ПАНДУС 90"), selected:ko.observable(false), sublist:["ПАНДУС 90","ЕЩЕ ПУНКТ", "ВТОРОЙ", "ТРЕТИЙ"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9)},
+            {title: ko.observable("ПАНДУС 90"), selected:ko.observable(false), sublist:["ПАНДУС 90","ПАНДУС 100", "ПАНДУС 110", "ПАНДУС 120"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9)},
             {title: "СТАНДАРТ", selected:ko.observable(false), sublist:[]}
         ],
         this.servicies = {title:"Услуги к заявке", selected:false, focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
@@ -34,7 +40,7 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'calc/data',
         <rect x="0.5" y="0.5" width="18" height="17" rx="4.5" fill="white" stroke="#C5C5C5"/>\
         </svg>',
 
-        this.validate = function(showAlert = true){
+        this.validate = function(showAlert = true, index = null){
             if(this.bodytypes.selected() === null)
             {
                 if(showAlert)
@@ -42,15 +48,33 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'calc/data',
                 return;
             }
 
-
-            ko.utils.arrayForEach(this.bodytypes.list, function(item){
-                if(item.sublist[item.selected()] === "РЕФ")
+            var title = this.bodytypes.list[this.bodytypes.selected()].sublist[this.bodytypes.list[this.bodytypes.selected()].selected()];
+            ko.utils.arrayForEach(this.selectRules, function(item){
+                if(item.title === title && item.only === "yes")
                 {
-                    if(showAlert)
-                    utils.showAlert('Инфо: ', 'Для рефрижератора нельзя убрать эту опцию', 'alert-info', '_' + utils.randId());
-                    ko.utils.arrayForEach(this.options, function(item){
-                        item.selected(true);
-                    });
+                    ko.utils.arrayForEach(item.list, function(value){
+                        if(value === index)
+                        {
+                            utils.showAlert('Инфо: ', 'Для ' + title + ' нельзя убрать опцию <b>' + this.options[index].title + '</b>', 'alert-info', '_' + utils.randId());
+                            this.options[index].selected(!this.options[index].selected());
+                            return;
+                        }
+                    }, this);
+                    return;
+                }
+            }, this);
+        },
+
+        this.setSelectedRules = function(index = 0){
+            var title = this.bodytypes.list[this.bodytypes.selected()].sublist[index];
+            ko.utils.arrayForEach(this.selectRules, function(item){
+                if(item.title === title)
+                {
+                    ko.utils.arrayForEach(item.list, function(value){
+                        this.options[value].selected(item.mustBe); 
+                    }, this);
+
+                    return;
                 }
             }, this);
         },
@@ -69,7 +93,7 @@ define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'calc/data',
                 item.selected(false);
                 if(typeof item.sublist !== "undefined" && item.sublist.length > 0)
                 {
-                    item.title(item.sublist[0])
+                    item.title(item.sublist[0]);
                 }
             });
         },
