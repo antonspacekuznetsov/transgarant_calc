@@ -29,6 +29,39 @@
                      
         </div>
     </div>
+
+    <!-- points blok -->
+    <div class="row" data-bind="foreach: points">
+    <!--ko if:!removed()-->
+        <div data-bind="class: Number.isInteger(($index()+1)/2) ? 'point_info_block2' : 'point_info_block1'" class="col-sm-6 point_info_block">
+            <div class="point_rut">
+                <div class="stroki">
+                        <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;" data-bind="text:'Точка ' + ($index()+1)"></span>
+                        <div class="qqq">
+                            <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
+                            <img style="cursor:pointer;margin-right: 8px;" data-bind="click:function(){$parent.edit($index())}, scroll:'#point__block'" src="images/pencil.png"> 
+                            <img style="cursor:pointer;" data-bind="click:function(){$parent.remove($index())}" src="images/point.png"> 
+                        </div>                        
+                </div>                
+                <div class="stroki">
+                    <img  style="margin-right: 10px;" src="images/placeholder 1.png">
+                    <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 14px; line-height: 17px; color: #636363;" data-bind="text: address + ' '+ (commentToAddress !== '' ? ( '(' + commentToAddress + ')' ) : '') "></span>                       
+                </div>
+                <div class="stroki">
+                    <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 16px; line-height: 20px; color: #636363;padding-left: 5px;" data-bind="text: 'В ' + company + ', ' + fio + ', ' + tel"></span>                       
+                </div>
+                <div class="stroki">
+                    <div class="accept_cargo">
+                        <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 22px; color: #6C6C6C;" data-bind="text: toDo"></span>  
+                    </div>
+                    <!--ko if: file-->
+                    <img  style="margin: 10px; margin-left: 70px;" src="images/checked_38.png">        
+                    <!--/ko-->            
+                </div>
+            </div>            
+        </div>    
+        <!-- /ko-->
+    </div>
     
      <!-- point adress -->
     <div class="row blok_point">
@@ -101,37 +134,4 @@
     </div>
     <!-- button point adress -->
     <div data-bind="click: editMode.turned() ? save : addPoint, text:editMode.turned() ? 'Сохранить' : 'Добавить'" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;"></div>
-    
-     <!-- points blok -->
-     <div class="row" data-bind="foreach: points">
-         <!--ko if:!removed()-->
-            <div data-bind="class: Number.isInteger(($index()+1)/2) ? 'point_info_block2' : 'point_info_block1'" class="col-sm-6 point_info_block">
-                <div class="point_rut">
-                    <div class="stroki">
-                            <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;" data-bind="text:'Точка ' + ($index()+1)"></span>
-                            <div class="qqq">
-                                <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
-                                <img style="cursor:pointer;margin-right: 8px;" data-bind="click:function(){$parent.edit($index())}, scroll:'#point__block'" src="images/pencil.png"> 
-                                <img style="cursor:pointer;" data-bind="click:function(){$parent.remove($index())}" src="images/point.png"> 
-                            </div>                        
-                    </div>                
-                    <div class="stroki">
-                        <img  style="margin-right: 10px;" src="images/placeholder 1.png">
-                        <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 14px; line-height: 17px; color: #636363;" data-bind="text: address + ' '+ (commentToAddress !== '' ? ( '(' + commentToAddress + ')' ) : '') "></span>                       
-                    </div>
-                    <div class="stroki">
-                        <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 16px; line-height: 20px; color: #636363;padding-left: 5px;" data-bind="text: 'В ' + company + ', ' + fio + ', ' + tel"></span>                       
-                    </div>
-                    <div class="stroki">
-                        <div class="accept_cargo">
-                            <span style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 22px; color: #6C6C6C;" data-bind="text: toDo"></span>  
-                        </div>
-                        <!--ko if: file-->
-                        <img  style="margin: 10px; margin-left: 70px;" src="images/checked_38.png">        
-                        <!--/ko-->            
-                    </div>
-                </div>            
-            </div>    
-            <!-- /ko-->
-    </div>
  

@@ -67,19 +67,19 @@
     <div class="col-sm-3 " style="padding:0px;">
         <div class="dropdown ">
             <!--ko with:bodytypes-->
-            <button data-bind="click:function(){$parent.validate(selected()=== null ? true : false);if(selected()=== null) return;focused(true)}, style:{display : focused() ? 'none' : ''}, attr:{id:id}" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button data-bind="click:function(){$parent.validate(selected()=== null ? true : false);if(selected()=== null) return; if(list[selected()].sublist.length === 1){return;}focused(true)}, style:{display : focused() ? 'none' : ''}, attr:{id:id}" class="btn btn-default dropdown-toggle bodytype_list" style="outline: none;" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <!--ko if: selected() === null -->
                     Выберете тип кузова
                 <!--/ko-->
                 <!--ko if: selected() !== null -->
                     <!-- ko text:list[selected()].sublist[list[selected()].selected()]--><!--/ko-->
                 <!--/ko-->
-                <!--ko if: selected() !== null-->
+                <!--ko if: selected() !== null && list[selected()].sublist.length > 1-->
               <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
               <!--/ko-->
             </button>
             <!--/ko-->
-            <!--ko if: bodytypes.selected() !== null-->
+            <!--ko if: bodytypes.selected() !== null && bodytypes.list[bodytypes.selected()].sublist.length > 1-->
             <ul class="dropdown-menu listbodytype"  aria-labelledby="dropdownMenu1" data-bind="foreach:bodytypes.list">
                 <!--ko foreach: sublist-->
                     <!-- ko if: $parents[1].bodytypes.selected() === $parentContext.$index() -->
@@ -94,7 +94,7 @@
 
     <div class="col-sm-3" data-bind="style:{display : servicies.focused() ? 'none' : ''}"></div>
     <div class="col-sm-6" data-bind="style:{display : servicies.focused() ? 'none' : ''}">
-            <button data-bind="click:function(){validate(bodytypes.selected()=== null ? true : false); if (bodytypes.selected() !== null) servicies.focused(true)}, attr:{id:servicies.id}"  style="text-align:left;width: 100%;" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button data-bind="click:function(){validate(bodytypes.selected()=== null ? true : false); if (bodytypes.selected() !== null) servicies.focused(true)}, attr:{id:servicies.id}"  style="text-align:left;width: 100%;outline: none;" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <!--ko text: bodytypes.selected() === null ? 'Выберете тип кузова' : servicies.title--><!--/ko-->
             <!--ko if: bodytypes.selected() !== null-->
             <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>      
@@ -103,7 +103,7 @@
             <p style="font-size: 10px;margin-left: 10px;">
                 <!--ko foreach:servicies.list-->    
                 <!--ko if:selected()-->
-                <!--ko text:title + ','-->
+                <!--ko text:title -->
                 <!--/ko-->
                 <!--/ko-->
                 <!--/ko-->
