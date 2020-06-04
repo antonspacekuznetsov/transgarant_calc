@@ -1,4 +1,5 @@
 requirejs.config({
+    urlArgs: 'v=1',
     waitSeconds: 60,
     appDir: "../",
     baseUrl: 'scripts/',

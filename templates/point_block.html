@@ -13,20 +13,16 @@
         <div class="col-sm-3">
             <p class="category_text"><b>Маршрут</b></p>         
         </div>
-        <div class="col-sm-9 category_time">  
-                
-
+        <div class="col-sm-9 category_time">
                 <div data-bind="dateTimePicker:dateOrder, dateTimePickerOptions:{sideBySide: true, locale: 'ru', daysOfWeekDisabled:[0,6], minDate: new Date()}" class='input-group date'>
                 <input type='text' class="form-control" style="width: 0px; padding: 0px;border: 0px;" />
                 <span class="input-group-addon" style="border: 0px;background: none;width: 100%;">
-                    <span> 
+                    <span>  
                         <img class="line" src="images/line.png"> <img src="images/calendar.png"> 
                         <b class="time_text" data-bind="text:moment(dateOrder()).format('dddd') + ' ' + moment(dateOrder()).format('D') + ' ' + ((moment(dateOrder()).format('MMMM') === 'март' || moment(dateOrder()).format('MMMM') === 'август') ? moment(dateOrder()).format('MMMM') + 'а' : moment(dateOrder()).format('MMMM').slice(0, moment(dateOrder()).format('MMMM').length - 1) + 'я')"></b> <b class="time_text1">в</b> <b class="time_text" data-bind="text:moment(dateOrder()).format('LT')"></b>
                     </span>
                 </span>
-            </div>
-           
-                     
+            </div> 
         </div>
     </div>
 
@@ -64,6 +60,7 @@
     </div>
     
      <!-- point adress -->
+    <div data-bind="hide: showPath">
     <div class="row blok_point">
         <div class="col-sm-7 background_point">
             <div class="text_time" data-bind="text:editMode.turned() ? 'Редактирование: Точка ' + (editMode.pointNumber + 1) : ('Точка ' + (removedList().length > 0 ?  (removedList()[0] + 1) : (points().length + 1)))"></div>
@@ -124,14 +121,15 @@
                     <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeTill, style: {'background-color' : isBreak() ? '' : '#eaeaea'}, enable:isBreak(), dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeTill().getHours()).slice(-2) + ':' + ('0' + breakTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="до 18.00">                                           
                 </div>
             </div>
-            <div style="background: #FFFFFF;border: 1px solid #C5C5C5;box-sizing: border-box;border-radius: 10px;margin-top: 139px;padding: 20px;margin-bottom: 5px;">
-                <span class="text_point">Погр, Получ.....</span>
-                <div class="text_right">                    
-                    <img src="images/arrow-point-to-right (1) 7.png">
-                </div>
+
+            <div style="height:140px;" data-bind="style:{display : toDoList.focused() ? 'none' : ''}" >
+                <button data-bind="click:function(){toDoList.focused(true)}, attr:{id:toDoList.id}"  style="text-align:left;width: 100%;outline: none;border-color: #c5c5c5;font-size:14px;margin: 30px 0px;" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <!--ko text: toDoList.title--><!--/ko-->
+                    <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>      
+                    </button>
             </div>
         </div>
     </div>
     <!-- button point adress -->
     <div data-bind="click: editMode.turned() ? save : addPoint, text:editMode.turned() ? 'Сохранить' : 'Добавить'" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;"></div>
- 
+    </div>

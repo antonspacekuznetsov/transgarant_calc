@@ -3,6 +3,13 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
     
     
     var viewModel = function(){
+        this.toDoList = {title:"Что сделать?", selected:false, focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
+         list:[
+            {title: "Погрузка", selected:ko.observable(false)},
+            {title: "Разгруска", selected:ko.observable(false)},
+            {title: "Получение документов", selected:ko.observable(false)},
+            {title: "Встреча экспедитора", selected:ko.observable(false)}
+        ]},
         this.moment = moment,
         this.editMode = {turned:ko.observable(false), pointNumber:null},
         this.dateOrder = ko.observable(moment().minutes(0).hour(9)),
@@ -29,6 +36,8 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         this.points = ko.observableArray([]),
 
         this.isAllFilled = ko.observable(true),
+
+        this.showPath = ko.observable(false);
 
         this.removedList = ko.observableArray([]),
         this.addPoint = function(){

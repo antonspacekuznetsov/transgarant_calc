@@ -43,6 +43,20 @@ define(["ko", 'jquery', 'utils/utils', 'inputMask'], function(ko, $, utils){
         }
     };
 
+    ko.bindingHandlers.hide = {
+        init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+            var value = valueAccessor();
+            if(ko.unwrap(value))
+            {
+                $(element).hide().slideDown();
+            }
+            else
+            {
+                $(element).show().slideUp();
+            }
+        }
+    },
+
     ko.bindingHandlers.dateTimePicker = {
         init: function (element, valueAccessor, allBindingsAccessor) {
             //initialize datepicker with some optional options
