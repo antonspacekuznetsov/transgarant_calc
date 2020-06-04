@@ -10,12 +10,12 @@
             <svg  data-bind="style: {display: $parent.bodytypes.selected() === $index() ? '' : 'none'}" style="margin-top: -14px;float: right;margin-right: -10px;" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 5C0 2.23858 2.23858 0 5 0H25V15C25 19.9706 20.9706 24 16 24H0V5Z" fill="#FFB700"/>
                 <path d="M6.15 13C6.05 12.9 6 12.75 6 12.65C6 12.55 6.05 12.4 6.15 12.3L6.85 11.6C7.05 11.4 7.35 11.4 7.55 11.6L7.6 11.65L10.35 14.6C10.45 14.7 10.6 14.7 10.7 14.6L17.4 7.65H17.45C17.65 7.45 17.95 7.45 18.15 7.65L18.85 8.35C19.05 8.55 19.05 8.85 18.85 9.05L10.85 17.35C10.75 17.45 10.65 17.5 10.5 17.5C10.35 17.5 10.25 17.45 10.15 17.35L6.25 13.15L6.15 13Z" fill="white"/>
-                </svg>
+            </svg>
         </div>
     <!-- /ko-->
     <div class="col-sm-6" style="display: inline-flex;padding: 20px 25px; border-radius: 10px; background-color: #FBFBFB;margin-left: 10px;margin-top: 9px;">
         <!--ko if:bodytypes.selected() === null-->
-        <div data-bind="click:function(){validate();}" style="position:absolute;width: 100%; height:100%;z-index: 5000;"></div>
+            <div data-bind="click:function(){validate();}" style="position:absolute;width: 100%; height:100%;z-index: 5000;"></div>
         <!--/ko-->
         <table>
           <tbody data-bind="foreach: options">
@@ -25,87 +25,85 @@
                         <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
                     <!-- /ko-->
                     <!--ko ifnot: enable() -->
-                    <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.disabledSVG"></td>
+                        <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.disabledSVG"></td>
                     <!-- /ko-->
-                <!--ko if: sublist.length > 0-->
-                    <td>
-                        <!-- ko component: 'dropdownlist' --><!-- /ko -->   
-                    </td>
-                <!--/ko-->
+                    <!--ko if: sublist.length > 0-->
+                        <td>
+                            <!-- ko component: 'dropdownlist' --><!-- /ko -->   
+                        </td>
+                    <!--/ko-->
                     <!--ko if: sublist.length === 0-->
                         <td style="padding:10px 5px 5px 5px" data-bind="text: title, style:{'color' : enable() ? '' : '#eaeaea'}"></td>
                     <!-- /ko-->
                 <!-- /ko-->
             </tr>  
           </tbody>   
-      </table>          
-      <table style="margin-left:20px;">
-        <tbody data-bind="foreach: options">
-            <tr>
-                <!-- ko if: $index() > ($parent.options.length/2 - 1)-->
-                    <!--ko if: enable() -->
-                        <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
+        </table>          
+        <table style="margin-left:20px;">
+            <tbody data-bind="foreach: options">
+                <tr>
+                    <!-- ko if: $index() > ($parent.options.length/2 - 1)-->
+                        <!--ko if: enable() -->
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
+                        <!-- /ko-->
+                        <!--ko ifnot: enable() -->
+                            <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.disabledSVG"></td>
+                        <!-- /ko-->
+                        <!--ko if: sublist.length > 0-->
+                            <td>
+                                <!-- ko component: 'dropdownlist' --><!-- /ko -->   
+                            </td>
+                        <!--/ko-->
+                        <!--ko if: sublist.length === 0-->
+                            <td style="padding:10px 5px 5px 5px" data-bind="text: title, style:{'color' : enable() ? '' : '#eaeaea'}"></td>
+                        <!-- /ko-->
                     <!-- /ko-->
-                    <!--ko ifnot: enable() -->
-                    <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.disabledSVG"></td>
-                    <!-- /ko-->
-                    <!--ko if: sublist.length > 0-->
-                <td>
-                    <!-- ko component: 'dropdownlist' --><!-- /ko -->   
-                </td>
-                <!--/ko-->
-                <!--ko if: sublist.length === 0-->
-                <td style="padding:10px 5px 5px 5px" data-bind="text: title, style:{'color' : enable() ? '' : '#eaeaea'}"></td>
-                <!-- /ko-->
-                <!-- /ko-->
-            </tr>   
-        </tbody>  
-    </table>    
+                </tr>   
+            </tbody>  
+        </table>    
     </div>
 </div>
 <div class="row bodytype_ract_second">
     <div class="col-sm-3 " style="padding:0px;">
         <div class="dropdown ">
             <!--ko with:bodytypes-->
-            <button data-bind="click:function(){$parent.validate(selected()=== null ? true : false);if(selected()=== null) return; if(list[selected()].sublist.length === 1){return;}focused(true)}, style:{display : focused() ? 'none' : ''}, attr:{id:id}" class="btn btn-default dropdown-toggle bodytype_list" style="outline: none;" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <!--ko if: selected() === null -->
-                    Выберете тип кузова
-                <!--/ko-->
-                <!--ko if: selected() !== null -->
-                    <!-- ko text:list[selected()].sublist[list[selected()].selected()]--><!--/ko-->
-                <!--/ko-->
-                <!--ko if: selected() !== null && list[selected()].sublist.length > 1-->
-              <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
-              <!--/ko-->
-            </button>
+                <button data-bind="click:function(){$parent.validate(selected()=== null ? true : false);if(selected()=== null) return; if(list[selected()].sublist.length === 1){return;}focused(true)}, style:{display : focused() ? 'none' : ''}, attr:{id:id}" class="btn btn-default dropdown-toggle bodytype_list" style="outline: none;" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <!--ko if: selected() === null -->
+                        Выберете тип кузова
+                    <!--/ko-->
+                    <!--ko if: selected() !== null -->
+                        <!-- ko text:list[selected()].sublist[list[selected()].selected()]--><!--/ko-->
+                    <!--/ko-->
+                    <!--ko if: selected() !== null && list[selected()].sublist.length > 1-->
+                        <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
+                    <!--/ko-->
+                </button>
             <!--/ko-->
             <!--ko if: bodytypes.selected() !== null && bodytypes.list[bodytypes.selected()].sublist.length > 1-->
-            <ul class="dropdown-menu listbodytype"  aria-labelledby="dropdownMenu1" data-bind="foreach:bodytypes.list">
-                <!--ko foreach: sublist-->
-                    <!-- ko if: $parents[1].bodytypes.selected() === $parentContext.$index() -->
-                    <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].bodytypes.list[$parentContext.$index()].selected() === $index() ? 'b8b8b8' : ''}, text:$data, click:function(){$parents[1].bodytypes.list[$parentContext.$index()].selected($index()); $parents[1].bodytypes.focused(false); $parents[1].resetOptions(); $parents[1].setSelectedRules($index());}"></a></li>
+                <ul class="dropdown-menu listbodytype"  aria-labelledby="dropdownMenu1" data-bind="foreach:bodytypes.list">
+                    <!--ko foreach: sublist-->
+                        <!-- ko if: $parents[1].bodytypes.selected() === $parentContext.$index() -->
+                            <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].bodytypes.list[$parentContext.$index()].selected() === $index() ? 'b8b8b8' : ''}, text:$data, click:function(){$parents[1].bodytypes.list[$parentContext.$index()].selected($index()); $parents[1].bodytypes.focused(false); $parents[1].resetOptions(); $parents[1].setSelectedRules($index());}"></a></li>
+                        <!--/ko-->
                     <!--/ko-->
-                <!--/ko-->
-            </ul>
+                </ul>
             <!--/ko-->
         </div>
     </div>
 
-
     <div class="col-sm-3" data-bind="style:{display : servicies.focused() ? 'none' : ''}"></div>
     <div class="col-sm-6" data-bind="style:{display : servicies.focused() ? 'none' : ''}">
             <button data-bind="click:function(){validate(bodytypes.selected()=== null ? true : false); if (bodytypes.selected() !== null) servicies.focused(true)}, attr:{id:servicies.id}"  style="text-align:left;width: 100%;outline: none;" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <!--ko text: bodytypes.selected() === null ? 'Выберете тип кузова' : servicies.title--><!--/ko-->
-            <!--ko if: bodytypes.selected() !== null-->
-            <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>      
-            <!--/ko-->
+                <!--ko text: bodytypes.selected() === null ? 'Выберете тип кузова' : servicies.title--><!--/ko-->
+                <!--ko if: bodytypes.selected() !== null-->
+                    <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>      
+                <!--/ko-->
             </button>     
             <p style="font-size: 10px;margin-left: 10px;">
                 <!--ko foreach:servicies.list-->    
-                <!--ko if:selected()-->
-                <!--ko text:title -->
-                <!--/ko-->
-                <!--/ko-->
+                    <!--ko if:selected()-->
+                        <!--ko text:title --><!--/ko-->
+                    <!--/ko-->
                 <!--/ko-->
             </p>   
     </div>
@@ -116,35 +114,34 @@
             <table>
                 <tbody data-bind="foreach:servicies.list">
                     <!--ko if: $index() < 4-->
-                    <tr>
-                        <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
-                        <td data-bind="text:title"></td>
-                    </tr>
+                        <tr>
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
+                            <td data-bind="text:title"></td>
+                        </tr>
                     <!--/ko-->
                 </tbody>
             </table>
             <table>
                 <tbody data-bind="foreach:servicies.list">
                     <!--ko if: $index() > 3 && $index() < 7-->
-                    <tr>
-                        <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
-                        <td data-bind="text:title"></td>
-                    </tr>
+                        <tr>
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
+                            <td data-bind="text:title"></td>
+                        </tr>
                     <!--/ko-->
                 </tbody>
             </table>
             <table>
                 <tbody data-bind="foreach:servicies.list">
                     <!--ko if: $index() > 6-->
-                    <tr>
-                        <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
-                        <td data-bind="text:title"></td>
-                    </tr>
+                        <tr>
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
+                            <td data-bind="text:title"></td>
+                        </tr>
                     <!--/ko-->
                 </tbody>
             </table>
             <span data-bind="click:function(){servicies.focused(false)}" class="glyphicon glyphicon-remove" aria-hidden="true" style="color:#b3b1b1;cursor: pointer;"></span>
         </div>
     </div>
-
 </div>
