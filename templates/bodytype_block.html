@@ -7,10 +7,9 @@
     <!-- ko foreach: bodytypes.list-->
         <div style="transition: border-color 0.4s linear;" class="col-sm-3 bodytype_racts" data-bind="click: function(){if($parent.bodytypes.selected() === $index()) $parent.bodytypes.selected(null); else $parent.bodytypes.selected($index());$parent.bodytypes.list[$index()].selected(0);$parent.setSelectedRules()}">
             <p><img  data-bind="attr : {src: 'images/' + img + '.png', style: style}"><!-- ko text:title--><!-- /ko --></p>
-            <svg  data-bind="style: {display: $parent.bodytypes.selected() === $index() ? '' : 'none'}" style="margin-top: -14px;float: right;margin-right: -10px;" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 5C0 2.23858 2.23858 0 5 0H25V15C25 19.9706 20.9706 24 16 24H0V5Z" fill="#FFB700"/>
-                <path d="M6.15 13C6.05 12.9 6 12.75 6 12.65C6 12.55 6.05 12.4 6.15 12.3L6.85 11.6C7.05 11.4 7.35 11.4 7.55 11.6L7.6 11.65L10.35 14.6C10.45 14.7 10.6 14.7 10.7 14.6L17.4 7.65H17.45C17.65 7.45 17.95 7.45 18.15 7.65L18.85 8.35C19.05 8.55 19.05 8.85 18.85 9.05L10.85 17.35C10.75 17.45 10.65 17.5 10.5 17.5C10.35 17.5 10.25 17.45 10.15 17.35L6.25 13.15L6.15 13Z" fill="white"/>
-            </svg>
+            <!--ko if: $parent.bodytypes.selected() === $index()-->
+                <span data-bind="html:$parent.svg.BT_check"></span>
+            <!--/ko -->
         </div>
     <!-- /ko-->
     <div class="col-sm-6" style="display: inline-flex;padding: 20px 25px; border-radius: 10px; background-color: #FBFBFB;margin-left: 10px;margin-top: 9px;">
@@ -22,10 +21,10 @@
             <tr>
                 <!-- ko if: $index() < $parent.options.length/2-->
                     <!--ko if: enable() -->
-                        <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
+                        <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.svg.checkinSVG : $parent.svg.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
                     <!-- /ko-->
                     <!--ko ifnot: enable() -->
-                        <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.disabledSVG"></td>
+                        <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.svg.disabledSVG"></td>
                     <!-- /ko-->
                     <!--ko if: sublist.length > 0-->
                         <td>
@@ -42,12 +41,12 @@
         <table style="margin-left:20px;">
             <tbody data-bind="foreach: options">
                 <tr>
-                    <!-- ko if: $index() > ($parent.options.length/2 - 1)-->
+                    <!-- ko if: $index() > $parent.options.length/2 -->
                         <!--ko if: enable() -->
-                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.svg.checkinSVG : $parent.svg.checkoutSVG, click:function(){selected(!selected());$parent.validate(true, $index());}"></td>
                         <!-- /ko-->
                         <!--ko ifnot: enable() -->
-                            <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.disabledSVG"></td>
+                            <td style="padding:5px; cursor: not-allowed;" data-bind="html: $parent.svg.disabledSVG"></td>
                         <!-- /ko-->
                         <!--ko if: sublist.length > 0-->
                             <td>
@@ -115,7 +114,7 @@
                 <tbody data-bind="foreach:servicies.list">
                     <!--ko if: $index() < 4-->
                         <tr>
-                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.svg.checkinSVG : $parent.svg.checkoutSVG, click:function(){selected(!selected());}"></td>
                             <td data-bind="text:title"></td>
                         </tr>
                     <!--/ko-->
@@ -125,7 +124,7 @@
                 <tbody data-bind="foreach:servicies.list">
                     <!--ko if: $index() > 3 && $index() < 7-->
                         <tr>
-                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.svg.checkinSVG : $parent.svg.checkoutSVG, click:function(){selected(!selected());}"></td>
                             <td data-bind="text:title"></td>
                         </tr>
                     <!--/ko-->
@@ -135,7 +134,7 @@
                 <tbody data-bind="foreach:servicies.list">
                     <!--ko if: $index() > 6-->
                         <tr>
-                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.checkinSVG : $parent.checkoutSVG, click:function(){selected(!selected());}"></td>
+                            <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.svg.checkinSVG : $parent.svg.checkoutSVG, click:function(){selected(!selected());}"></td>
                             <td data-bind="text:title"></td>
                         </tr>
                     <!--/ko-->
