@@ -54,6 +54,17 @@ define(["ko", 'jquery', 'utils/utils', 'inputMask'], function(ko, $, utils){
             {
                 $(element).show().slideUp();
             }
+        },
+        update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+            var value = valueAccessor();
+            if(ko.unwrap(value))
+            {
+                $(element).hide().slideDown();
+            }
+            else
+            {
+                $(element).show().slideUp();
+            }
         }
     },
 

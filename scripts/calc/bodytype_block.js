@@ -91,6 +91,40 @@ function(ko, template, utils, data, svg){
             }, this);
         },
 
+        this.formListOptions = function(){
+            var array = [], subArr1 = [], subArr2 = [];
+            var count = 0, subCnt = 0;
+
+            ko.utils.arrayForEach(this.options, function(option){
+                if(option.enable())
+                {
+                    count++;
+                }
+            });
+
+            ko.utils.arrayForEach(this.options, function(option){
+
+                if(option.enable())
+                {
+                    if(subCnt < Math.ceil(count/2)){
+                        subArr1.push(option);
+                    }
+                    else{
+                        subArr2.push(option);
+                    }
+                    subCnt++;
+                }
+
+            });
+
+
+            array.push(subArr1);
+            array.push(subArr2);
+
+            return array;
+
+        };
+
         this.bodytypes.selected.subscribe(function(){
             this.resetOptions();
         }, this),

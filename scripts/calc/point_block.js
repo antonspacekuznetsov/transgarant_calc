@@ -34,18 +34,41 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         this.breakTimeTill = ko.observable(new Date(2020, 0, 1, 18, 0)),
 
         this.points = ko.observableArray([]),
+        this.points.subscribe(function(val){
+            var count = 0;
+            ko.utils.arrayForEach(this.points(), function(point){
+                if(!point.removed() )
+                {
+                    count++;
+                }
+            });
+            if(count >= 2)
+            {
+                this.showPath(false);
+            }
+            else
+            {
+                this.showPath(true);
+            }
+        }, this);
 
         this.isAllFilled = ko.observable(true),
 
-        this.showPath = ko.observable(false);
-
+        this.showPath = ko.observable(true);
+        
         this.removedList = ko.observableArray([]),
+        
         this.addPoint = function(){
+            if(!this.showPath())
+            {
+                this.showPath(true);
+                return;
+            }
             if(this.address() === '' || this.fio() === '' || this.tel() === '' || this.company() === ''){
                 this.isAllFilled(false);
                 var msg = 'Заполните следующие поля:<br>' + (this.address() === '' ? 'Адрес;<br>' : '') + (this.fio() === '' ? 'Ф.И.О.;<br>' : '') + (this.tel() === '' ? 'Телефон;<br>' : '') + (this.company() === '' ? 'В какую компанию по адресу;' : '');
                 utils.showAlert('Ошибка: ', msg, 'alert-danger', '_' + utils.randId(), 7000);
-                utils.smoothScroll($('#point__block').offset().top, 500);
+                utils.smoothScroll($('#point_inputs').offset().top, 500);
                 return;
             }
             else
@@ -74,6 +97,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             }
 
             this.clear();
+            utils.smoothScroll($('#points').offset().top, 500);
         },
 
         this.clear = function(){
@@ -129,6 +153,8 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             this.isBreak(item.isBreak);
             this.breakTimeFrom(item.breakTimeFrom);
             this.breakTimeTill(item.breakTimeTill);
+
+            this.showPath(true);
         },
 
         this.save = function(){
@@ -143,6 +169,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
                 );
             this.clear();
         },
+
         this.c = function(){
             return data.get_context()[0].bodytype;
         },

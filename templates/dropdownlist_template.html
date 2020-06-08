@@ -1,6 +1,6 @@
 <!--ko if: $parent.enable()-->
   <div class="dropdown">
-      <button data-bind="click:function(){if($parent.enable()){$parent.focused(true)}}, style:{display : $parent.focused() ? 'none' : ''}, attr:{id:$parent.id}" style="border: 1px solid rgb(255, 183, 0);border-radius: 14px;width: 100%;text-align: left;outline: none;" class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <button data-bind="click:function(){if($parent.enable()){$parent.focused(true)}}, style:{display : $parent.focused() ? 'none' : ''}, attr:{id:$parent.id}" style="margin-top:5px;min-width:200px;border: 1px solid rgb(255, 183, 0);border-radius: 14px;width: 100%;text-align: left;outline: none;" class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         <!-- ko text:$parent.title().substring(0, $parent.title().indexOf('<')).length === 0 ? $parent.title() : $parent.title().substring(0, $parent.title().indexOf('<')) --><!--/ko-->
         <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
       </button>

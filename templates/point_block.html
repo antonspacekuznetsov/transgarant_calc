@@ -27,7 +27,7 @@
     </div>
 
     <!-- points blok -->
-    <div class="row" data-bind="foreach: points">
+    <div class="row"  id="points" data-bind="foreach: points">
     <!--ko if:!removed()-->
         <div data-bind="class: Number.isInteger(($index()+1)/2) ? 'point_info_block2' : 'point_info_block1'" class="col-sm-6 point_info_block">
             <div class="point_rut">
@@ -35,7 +35,7 @@
                         <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;" data-bind="text:'Точка ' + ($index()+1)"></span>
                         <div class="qqq">
                             <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
-                            <img style="cursor:pointer;margin-right: 8px;" data-bind="click:function(){$parent.edit($index())}, scroll:'#point__block'" src="images/pencil.png"> 
+                            <img style="cursor:pointer;margin-right: 8px;" data-bind="click:function(){$parent.edit($index())}, scroll:'#point_inputs'" src="images/pencil.png"> 
                             <img style="cursor:pointer;" data-bind="click:function(){$parent.remove($index())}" src="images/point.png"> 
                         </div>                        
                 </div>                
@@ -60,8 +60,7 @@
     </div>
     
      <!-- point adress -->
-    <div data-bind="hide: showPath">
-    <div class="row blok_point">
+    <div data-bind="hide: showPath" id="point_inputs" class="row blok_point">
         <div class="col-sm-7 background_point">
             <div class="text_time" data-bind="text:editMode.turned() ? 'Редактирование: Точка ' + (editMode.pointNumber + 1) : ('Точка ' + (removedList().length > 0 ?  (removedList()[0] + 1) : (points().length + 1)))"></div>
             <div class="adress" data-bind="style: {'border-color': address() === '' && !isAllFilled() ?  'red' : '#C5C5C5'}">
@@ -131,5 +130,4 @@
         </div>
     </div>
     <!-- button point adress -->
-    <div data-bind="click: editMode.turned() ? save : addPoint, text:editMode.turned() ? 'Сохранить' : 'Добавить'" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;"></div>
-    </div>
+    <div data-bind="click: editMode.turned() ? save : addPoint, text:editMode.turned() ? 'Сохранить' : 'Добавить адрес'" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;"></div>
