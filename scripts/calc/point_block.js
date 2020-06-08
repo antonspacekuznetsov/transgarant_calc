@@ -1,4 +1,5 @@
-define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode", "ymaps", 'moment', 'utils/utils', 'calc/data',  "utils/customHandlers", "suggestions", 'inputMask', 'datetimepicker'], function(ko, template, init, ymaps, moment, utils, data){
+define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode", "ymaps", 'moment', 'utils/utils', 'calc/data', 'helpers/svgCollections',  "utils/customHandlers", "suggestions", 'inputMask', 'datetimepicker'], 
+function(ko, template, init, ymaps, moment, utils, data, svg){
     moment.locale('ru');
     
     
@@ -6,7 +7,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         this.toDoList = {title:"Что сделать?", selected:false, focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),
          list:[
             {title: "Погрузка", selected:ko.observable(false)},
-            {title: "Разгруска", selected:ko.observable(false)},
+            {title: "Разгрузка", selected:ko.observable(false)},
             {title: "Получение документов", selected:ko.observable(false)},
             {title: "Встреча экспедитора", selected:ko.observable(false)}
         ]},
@@ -51,6 +52,17 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
                 this.showPath(true);
             }
         }, this);
+        
+        this.pointsCount = ko.computed(function(){
+            var count = 0;
+            ko.utils.arrayForEach(this.points(), function(point){
+                if(!point.removed() )
+                {
+                    count++;
+                }
+            });
+            return count;
+        }, this);
 
         this.isAllFilled = ko.observable(true),
 
@@ -76,6 +88,14 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
                 this.isAllFilled(true);
             }
 
+            var toDoList = [];
+            ko.utils.arrayForEach(this.toDoList.list, function(item){
+                if(item.selected())
+                {
+                    toDoList.push(item);
+                }
+            });
+
             if(this.removedList().length > 0)
             {
                 var obj = this.points()[this.removedList()[0]];
@@ -83,7 +103,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
                     {
                         coords: this.coords(), address: this.address(), commentToAddress: this.commentToAddress(), fio: this.fio(), toDo: this.toDo(), 
                         company: this.company(), tel: this.tel(), file: this.file(), fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
-                        isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), removed:ko.observable(false)
+                        isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), toDoList: toDoList, removed:ko.observable(false)
                     }
                     );
                 this.removedList.shift();    
@@ -92,7 +112,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             this.points.push({
                 coords: this.coords(), address: this.address(), commentToAddress: this.commentToAddress(), fio: this.fio(), toDo: this.toDo(), 
                 company: this.company(), tel: this.tel(), file: this.file(), fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
-                isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), removed:ko.observable(false)
+                isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), toDoList: toDoList, removed:ko.observable(false)
             });
             }
 
@@ -121,6 +141,9 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             this.breakTimeFrom(new Date(2020, 0, 1, 9, 0));
             this.breakTimeTill(new Date(2020, 0, 1, 18, 0));
 
+            ko.utils.arrayForEach(this.toDoList.list, function(item){
+                item.selected(false);
+            });
             this.editMode.turned(false);
             this.editMode.pointNumber = null;
         },
@@ -135,6 +158,7 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
         },
 
         this.edit = function(index){
+            this.clear();
             this.editMode.pointNumber = index;
             this.editMode.turned(false);
             this.editMode.turned(true);
@@ -154,21 +178,41 @@ define(["ko", 'text!/templates/point_block.html', "utils/event_reverse_geocode",
             this.breakTimeFrom(item.breakTimeFrom);
             this.breakTimeTill(item.breakTimeTill);
 
+            ko.utils.arrayForEach(item.toDoList, function(item){
+                ko.utils.arrayForEach(this.toDoList.list, function(element){
+                    if(element.title === item.title)
+                    {
+                        item.selected(true);
+                        return;
+                    }
+                });
+            }, this);
+
             this.showPath(true);
         },
 
         this.save = function(){
             var obj = this.points()[this.editMode.pointNumber];
 
+            var toDoList = [];
+            ko.utils.arrayForEach(this.toDoList.list, function(item){
+                if(item.selected())
+                {
+                    toDoList.push(item);
+                }
+            });
+
             this.points.replace(obj,
                 {
                     coords: this.coords(), address: this.address(), commentToAddress: this.commentToAddress(), fio: this.fio(), toDo: this.toDo(), 
                     company: this.company(), tel: this.tel(), file: this.file(), fileName: this.fileName, workTimeFrom: this.workTimeFrom(), workTimeTill: this.workTimeTill(),
-                    isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(), removed:ko.observable(false)
+                    isBreak: this.isBreak(), breakTimeFrom: this.breakTimeFrom(), breakTimeTill: this.breakTimeTill(),  toDoList: toDoList, removed:ko.observable(false)
                 }
                 );
             this.clear();
         },
+
+        this.svg = svg,
 
         this.c = function(){
             return data.get_context()[0].bodytype;

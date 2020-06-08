@@ -12,7 +12,7 @@ function(ko, template, utils, data, svg){
             {title: "ТЕНТ", listIds:[0,1,2,3,5,11]},
             {title: "ФУРГОН", listIds:[3,5,11,12]},
             {title: "ИЗОТЕРМ", listIds:[3,5,11,12]},
-            {title: "Ц/М", listIds:[8,11,12]},
+            {title: "Ц/М", listIds:[8,11,12,14]},
             {title: "РЕФ", listIds:[3,4,5,6,7,11,12]},
             {title: "БОРТ", listIds:[5,9,10]},
             {title: "Открытый", listIds:[3,5]}
@@ -33,7 +33,7 @@ function(ko, template, utils, data, svg){
             {_id:11, title: "МЕДКНИЖКА", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
             {_id:12, title: "АКТ О ОБРАБОТКИ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
             {_id:13, title: "СТАНДАРТ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:14, title: "Высота", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"input"}
+            {_id:14, title: "Высота", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"input", value: null}
         ],
         this.servicies = {
             title:"Услуги к заявке", selected:false, focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),

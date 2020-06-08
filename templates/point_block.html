@@ -34,7 +34,11 @@
                 <div class="stroki">
                         <span style="font-family: Montserrat; font-style: normal; font-weight: bold; font-size: 24px; line-height: 29px; color: #FFB700;margin-right: 30px;" data-bind="text:'Точка ' + ($index()+1)"></span>
                         <div class="qqq">
-                            <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">Погрузка, разгрузка.</div>  
+                            <div class="loading" style="font-family: Montserrat; font-style: normal; font-weight: normal; font-size: 13px; line-height: 16px; color: #000000;">
+                                <!--ko foreach: toDoList-->
+                                    <!--ko text: title --><!--/ko-->
+                                <!--/ko-->
+                            </div>  
                             <img style="cursor:pointer;margin-right: 8px;" data-bind="click:function(){$parent.edit($index())}, scroll:'#point_inputs'" src="images/pencil.png"> 
                             <img style="cursor:pointer;" data-bind="click:function(){$parent.remove($index())}" src="images/point.png"> 
                         </div>                        
@@ -125,9 +129,28 @@
                 <button data-bind="click:function(){toDoList.focused(true)}, attr:{id:toDoList.id}"  style="text-align:left;width: 100%;outline: none;border-color: #c5c5c5;font-size:14px;margin: 30px 0px;" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <!--ko text: toDoList.title--><!--/ko-->
                     <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>      
-                    </button>
+                </button>
             </div>
+
+            <div class="col-sm-2" data-bind="style:{display : toDoList.focused() ? '' : 'none'}"></div>
+            <!--ko if: toDoList.focused()-->
+                <div class="bodytype_ract_bigoptions" style="width:100%;margin-top:80px;">
+                    <table style="margin-right: 220px;">
+                        <tbody data-bind="foreach:toDoList.list">
+                                <tr>
+                                    <td style="padding:5px; cursor: pointer;" data-bind="html: selected() ? $parent.svg.checkinSVG : $parent.svg.checkoutSVG, click:function(){selected(!selected());}"></td>
+                                    <td data-bind="text:title"></td>
+                                </tr>
+                        </tbody>
+                    </table>
+                    <span data-bind="click:function(){toDoList.focused(false)}" class="glyphicon glyphicon-remove" aria-hidden="true" style="color:#b3b1b1;cursor: pointer;"></span>
+                </div>
+            <!--/ko-->
+
         </div>
     </div>
     <!-- button point adress -->
     <div data-bind="click: editMode.turned() ? save : addPoint, text:editMode.turned() ? 'Сохранить' : 'Добавить адрес'" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;"></div>
+    <!--ko if: pointsCount() >= 2 && showPath() && !editMode.turned()-->
+        <div data-bind="click:function(){showPath(false)};" class="parallelogram" style="cursor:pointer;font-family: Montserrat; font-style: italic; font-weight: normal; font-size: 14px; line-height: 17px; color: #FFFFFF; padding: 15px 70px;">Отмена</div>
+    <!--/ko-->

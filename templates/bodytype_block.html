@@ -28,8 +28,11 @@
                                 <!-- ko component: 'dropdownlist' --><!-- /ko -->   
                             </td>
                         <!--/ko-->
-                        <!--ko if: sublist.length === 0 && enable()-->
+                        <!--ko if: sublist.length === 0 && enable() && type === 'text'-->
                             <td style="padding:10px 5px 5px 5px" data-bind="text: title"></td>
+                        <!-- /ko-->
+                        <!--ko if: sublist.length === 0 && enable() && type === 'input'-->
+                        <td style="padding:10px 5px 5px 5px" ><input type="text" data-bind="enable:selected(),textInput:value, mask: 'decimal'"  placeholder="Высота" style="outline: none"></td>
                         <!-- /ko-->
 
                 </tr>   
@@ -47,8 +50,11 @@
                                 <!-- ko component: 'dropdownlist' --><!-- /ko -->   
                             </td>
                         <!--/ko-->
-                        <!--ko if: sublist.length === 0 && enable()-->
+                        <!--ko if: sublist.length === 0 && enable() && type === 'text'-->
                             <td style="padding:10px 5px 5px 5px" data-bind="text: title"></td>
+                        <!-- /ko-->
+                        <!--ko if: sublist.length === 0 && enable() && type === 'input'-->
+                        <td style="padding:10px 5px 5px 5px" ><input data-bind="enable:selected(),textInput:value, mask: 'decimal'" type="text" placeholder="Высота" style="outline: none"></td>
                         <!-- /ko-->
 
                 </tr>   
