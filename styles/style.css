@@ -248,6 +248,7 @@ color: #000000;
 .bodytype_ract
 {
     margin: 20 0 0 10;
+    min-height: 200px;
 }
 .bodytype_ract_second
 {
@@ -262,7 +263,17 @@ color: #000000;
     position: absolute;
     z-index: 1000;
     background: white;
-    margin-top: 10px;
+    margin-top: -62px;
+    margin-left: 30px;
+}
+.bodytype_ract_bigoptions2
+{
+    padding: 20px;
+    border: 1px solid #c5c5c5;
+    border-radius: 10px;
+    display: flex;
+    z-index: 1000;
+    background: white;
 }
 .bodytype_racts
 {
@@ -537,6 +548,7 @@ div.accept_cargo{
     background: #FBFBFB;
     border-radius: 0px 10px 10px 0px;
     padding: 20px 20px;
+    height: 430px;
   }
 
   .text_time {
@@ -560,7 +572,7 @@ div.accept_cargo{
     border: 1px solid #C5C5C5;
     box-sizing: border-box;
     border-radius: 10px;
-    padding: 20px;
+    padding: 18px;
    
     margin-bottom: 20px;
   }
@@ -821,6 +833,18 @@ line-height: 16px;
 padding: 20px;
 color: #000000;
 }
+
+.lin_style {
+    white-space: nowrap;   
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 27px;
+    text-transform: uppercase;
+    color: #000000;
+}
+
 
 .char_input_price > input {
     background: #FFFFFF;
@@ -1258,3 +1282,5 @@ border-radius: 10px;
     width: 510px;
 }
   }
+
+

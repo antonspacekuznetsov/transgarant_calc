@@ -232,6 +232,21 @@ function(ko, template, init, ymaps, moment, utils, data, svg){
         <rect x="0.5" y="0.5" width="18" height="17" rx="4.5" fill="white" stroke="#C5C5C5"/>\
         </svg>',
 
+        this.showButton = function(self, event){
+            if(self.toDoList.focused() && (event.target.id !== self.toDoList.id))
+            {
+                var status = false;
+                for(var i = 0; i < event.path.length; i++)
+                {
+                    if(event.path[i].id === "biglist2")
+                    {
+                        status = true;
+                        break;
+                    }
+                }
+                self.toDoList.focused(status);
+            }
+        },
 
         (function(self){
             var fn = function(){
@@ -248,7 +263,8 @@ function(ko, template, init, ymaps, moment, utils, data, svg){
             $("#address_input").blur(fn.bind(self));
         })(this),
         (function(self){data.set_context({point:self});})(this),
-        (function(self){ ymaps.ready(init.bind(self));})(this)
+        (function(self){ ymaps.ready(init.bind(self));})(this),
+        (function(self){document.addEventListener( "click" , function(event){self.showButton(self, event)});})(this)
     }
     
     ko.components.register('point_block', {

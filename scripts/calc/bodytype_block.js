@@ -149,18 +149,18 @@ function(ko, template, utils, data, svg){
             {
                 if(self.options[i].sublist.length > 0)
                 {
-                    if(self.options[i].focused() && (event.target.id !== self.options[i].id && event.srcElement.parentElement.id !== self.options[i].id))
+                    if(self.options[i].focused() && (event.target.id !== self.options[i].id))
                     {
                         self.options[i].focused(false);
                     }
                 }
             }
-            if(self.bodytypes.focused() && (event.target.id !== self.bodytypes.id && event.srcElement.parentElement.id !== self.bodytypes.id))
+            if(self.bodytypes.focused() && (event.target.id !== self.bodytypes.id))
             {
                 self.bodytypes.focused(false);
             }
 
-            if(self.servicies.focused() && (event.target.id !== self.servicies.id && event.srcElement.parentElement.id !== self.servicies.id))
+            if(self.servicies.focused() && (event.target.id !== self.servicies.id))
             {
                 var status = false;
                 for(var i = 0; i < event.path.length; i++)

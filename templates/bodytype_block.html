@@ -5,11 +5,41 @@
 </div>
 <div class="row bodytype_ract">
     <!-- ko foreach: bodytypes.list-->
-        <div style="transition: border-color 0.4s linear;" class="col-sm-3 bodytype_racts" data-bind="click: function(){if($parent.bodytypes.selected() === $index()) $parent.bodytypes.selected(null); else $parent.bodytypes.selected($index());$parent.bodytypes.list[$index()].selected(0);$parent.setSelectedRules()}">
+        <div style="transition: border-color 0.4s linear;" class="col-sm-3 bodytype_racts" >
+            <div data-bind="click: function(){if($parent.bodytypes.selected() === $index()) $parent.bodytypes.selected(null); else $parent.bodytypes.selected($index());$parent.bodytypes.list[$index()].selected(0);$parent.setSelectedRules()}">
             <p><img  data-bind="attr : {src: 'images/' + img + '.png', style: style}"><!-- ko text:title--><!-- /ko --></p>
             <!--ko if: $parent.bodytypes.selected() === $index()-->
                 <span data-bind="html:$parent.svg.BT_check"></span>
             <!--/ko -->
+            </div>
+            <!--ko with: $parent-->
+            <!--ko if:$index() === 0-->
+                <div class="dropdown " style="margin-left: -20px;margin-top: 30px;" >
+                    <!--ko with:bodytypes-->
+                        <button data-bind="click:function(){$parent.validate(selected()=== null ? true : false);if(selected()=== null) return; if(list[selected()].sublist.length === 1){return;}focused(true)}, style:{display : focused() ? 'none' : ''}, attr:{id:id}" class="btn btn-default dropdown-toggle bodytype_list" style="outline: none;" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <!--ko if: selected() === null -->
+                                Выберете тип кузова
+                            <!--/ko-->
+                            <!--ko if: selected() !== null -->
+                                <!-- ko text:list[selected()].sublist[list[selected()].selected()]--><!--/ko-->
+                            <!--/ko-->
+                            <!--ko if: selected() !== null && list[selected()].sublist.length > 1-->
+                                <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
+                            <!--/ko-->
+                        </button>
+                    <!--/ko-->
+                    <!--ko if: bodytypes.selected() !== null && bodytypes.list[bodytypes.selected()].sublist.length > 1-->
+                        <ul class="dropdown-menu listbodytype"  aria-labelledby="dropdownMenu1" data-bind="foreach:bodytypes.list">
+                            <!--ko foreach: sublist-->
+                                <!-- ko if: $parents[1].bodytypes.selected() === $parentContext.$index() -->
+                                    <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].bodytypes.list[$parentContext.$index()].selected() === $index() ? 'b8b8b8' : ''}, text:$data, click:function(){$parents[1].bodytypes.list[$parentContext.$index()].selected($index()); $parents[1].bodytypes.focused(false); $parents[1].resetOptions(); $parents[1].setSelectedRules($index());}"></a></li>
+                                <!--/ko-->
+                            <!--/ko-->
+                        </ul>
+                    <!--/ko-->
+                </div>
+            <!--/ko-->
+            <!--/ko-->
         </div>
     <!-- /ko-->
     <div class="col-sm-6" style="display: inline-flex;padding: 20px 25px; border-radius: 10px; background-color: #FBFBFB;margin-left: 10px;margin-top: 9px;">
@@ -54,7 +84,7 @@
                             <td style="padding:10px 5px 5px 5px" data-bind="text: title"></td>
                         <!-- /ko-->
                         <!--ko if: sublist.length === 0 && enable() && type === 'input'-->
-                        <td style="padding:10px 5px 5px 5px" ><input data-bind="enable:selected(),textInput:value, mask: 'decimal'" type="text" placeholder="Высота" style="outline: none"></td>
+                        <td style="padding:10px 5px 5px 5px" ><input data-bind="enable:selected(),textInput:value, mask: 'decimal'" type="text" placeholder="Высота, мм" style="outline: none"></td>
                         <!-- /ko-->
 
                 </tr>   
@@ -62,37 +92,14 @@
         </table>    
     </div>
 </div>
-<div class="row bodytype_ract_second">
-    <div class="col-sm-3 " style="padding:0px;">
-        <div class="dropdown ">
-            <!--ko with:bodytypes-->
-                <button data-bind="click:function(){$parent.validate(selected()=== null ? true : false);if(selected()=== null) return; if(list[selected()].sublist.length === 1){return;}focused(true)}, style:{display : focused() ? 'none' : ''}, attr:{id:id}" class="btn btn-default dropdown-toggle bodytype_list" style="outline: none;" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <!--ko if: selected() === null -->
-                        Выберете тип кузова
-                    <!--/ko-->
-                    <!--ko if: selected() !== null -->
-                        <!-- ko text:list[selected()].sublist[list[selected()].selected()]--><!--/ko-->
-                    <!--/ko-->
-                    <!--ko if: selected() !== null && list[selected()].sublist.length > 1-->
-                        <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>
-                    <!--/ko-->
-                </button>
-            <!--/ko-->
-            <!--ko if: bodytypes.selected() !== null && bodytypes.list[bodytypes.selected()].sublist.length > 1-->
-                <ul class="dropdown-menu listbodytype"  aria-labelledby="dropdownMenu1" data-bind="foreach:bodytypes.list">
-                    <!--ko foreach: sublist-->
-                        <!-- ko if: $parents[1].bodytypes.selected() === $parentContext.$index() -->
-                            <li><a class="list_elem" href="#" data-bind="style:{'background-color': $parents[1].bodytypes.list[$parentContext.$index()].selected() === $index() ? 'b8b8b8' : ''}, text:$data, click:function(){$parents[1].bodytypes.list[$parentContext.$index()].selected($index()); $parents[1].bodytypes.focused(false); $parents[1].resetOptions(); $parents[1].setSelectedRules($index());}"></a></li>
-                        <!--/ko-->
-                    <!--/ko-->
-                </ul>
-            <!--/ko-->
-        </div>
-    </div>
+<div class="row bodytype_ract_second" style="background: #FBFBFB;border-radius: 10px;margin-right: -15px;margin-left: -15px;">
 
-    <div class="col-sm-3" data-bind="style:{display : servicies.focused() ? 'none' : ''}"></div>
-    <div class="col-sm-6" data-bind="style:{display : servicies.focused() ? 'none' : ''}">
-            <button data-bind="click:function(){validate(bodytypes.selected()=== null ? true : false); if (bodytypes.selected() !== null) servicies.focused(true)}, attr:{id:servicies.id}"  style="text-align:left;width: 100%;outline: none;" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+    <div class="col-sm-6 lin_style" data-bind="style:{display : servicies.focused() ? 'none' : ''}" style="padding: 35px;">
+        ОБЩИЕ ДОП
+    </div>
+    <div class="col-sm-6" style="margin-left: -15px;" data-bind="style:{display : servicies.focused() ? 'none' : ''}">
+            <button data-bind="click:function(){validate(bodytypes.selected()=== null ? true : false); if (bodytypes.selected() !== null) servicies.focused(true)}, attr:{id:servicies.id}"  style="text-align:left;width: 100%;outline: none;margin-top: 20px;" class="btn btn-default dropdown-toggle bodytype_list" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <!--ko text: bodytypes.selected() === null ? 'Выберете тип кузова' : servicies.title--><!--/ko-->
                 <!--ko if: bodytypes.selected() !== null-->
                     <span class="glyphicon glyphicon-menu-down" style="color:#FFB700;float:right;" aria-hidden="true"></span>      
@@ -101,14 +108,17 @@
             <p style="font-size: 10px;margin-left: 10px;">
                 <!--ko foreach:servicies.list-->    
                     <!--ko if:selected()-->
-                        <!--ko text:title --><!--/ko-->
+                        <!--ko text:title + ',' --><!--/ko-->
                     <!--/ko-->
                 <!--/ko-->
             </p>   
     </div>
     
-    <div class="col-sm-2" data-bind="style:{display : servicies.focused() ? '' : 'none'}"></div>
+    <div class="col-sm-5 lin_style" data-bind="style:{display : servicies.focused() ? '' : 'none'}" style="padding: 35px;">
+        ОБЩИЕ ДОП
+    </div>
     <div data-bind="style:{display : servicies.focused() ? '' : 'none'}" id="biglist" class="col-sm-7">
+        <div style="height:82px;"></div>  
         <div class="bodytype_ract_bigoptions">
             <table>
                 <tbody data-bind="foreach:servicies.list">
