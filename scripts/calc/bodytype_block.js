@@ -1,4 +1,4 @@
-define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'calc/data', 'helpers/svgCollections', 'utils/dropdownlist'], 
+define(["ko", 'text!/templates/bodytype_block.html', 'utils/utils', 'calc/data', 'helpers/svgCollections', 'utils/dropdownlist', 'utils/request'], 
 function(ko, template, utils, data, svg){
     var viewModel = function(){
         this.bodytypes = {

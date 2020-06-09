@@ -1,4 +1,4 @@
-define(["ko", 'jquery', 'utils/utils', 'inputMask'], function(ko, $, utils){
+define(["ko", 'jquery', 'utils/utils', 'utils/request', 'inputMask'], function(ko, $, utils, request){
     Inputmask.extendAliases({
         'decimal': {
           rightAlign: false,
@@ -29,12 +29,22 @@ define(["ko", 'jquery', 'utils/utils', 'inputMask'], function(ko, $, utils){
         }
     };
     
+    ko.bindingHandlers.file = {
+        init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+            $(element).focus(function() {
+                $(element)[0].files[0] = {};
+              });
+            $(element).change(function() {
+                request.loadFile($(element)[0].files[0].name, $(element)[0].files[0]);
+              });
+        }
+    };
+
     ko.bindingHandlers.mask = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
             $(element).inputmask(valueAccessor());
         }
     };
-
     ko.bindingHandlers.scroll = {
         init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
             $(element).click(function(){

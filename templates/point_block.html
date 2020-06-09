@@ -98,7 +98,7 @@
                     <img src="images/doc1.png">
                     <span class="text_point">Прикрепить файл</span>             
                 </div>
-                <input id="file" name="myFile" type="file" style="display:none;"> 
+                <input data-bind="file:init" id="file" name="myFile" type="file" style="display:none;"> 
             </div>                        
         </div> 
         <div class="col-sm-5 background_time">             
@@ -108,7 +108,7 @@
                     <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:workTimeFrom, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + workTimeFrom().getHours()).slice(-2) + ':' + ('0' + workTimeFrom().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">              
                 </div>                
                 <div class="adress pozis_righ tim">
-                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:workTimeTill, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + workTimeTill().getHours()).slice(-2) + ':' + ('0' + workTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">              
+                    <input data-bind="mask:'до 9{1,2}:9{1,2}', dateTimePicker:workTimeTill, dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + workTimeTill().getHours()).slice(-2) + ':' + ('0' + workTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">              
                
                 </div>
             </div>
@@ -121,7 +121,7 @@
                     <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeFrom, style: {'background-color' : isBreak() ? '' : '#eaeaea'}, enable:isBreak(), dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeFrom().getHours()).slice(-2) + ':' + ('0' + breakTimeFrom().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="с 9.00">                            
                 </div>                
                 <div data-bind="style: {'background-color' : isBreak() ? '' : '#eaeaea'}"  class="adress pozis_righ tim">
-                    <input data-bind="mask:'с 9{1,2}:9{1,2}', dateTimePicker:breakTimeTill, style: {'background-color' : isBreak() ? '' : '#eaeaea'}, enable:isBreak(), dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeTill().getHours()).slice(-2) + ':' + ('0' + breakTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="до 18.00">                                           
+                    <input data-bind="mask:'до 9{1,2}:9{1,2}', dateTimePicker:breakTimeTill, style: {'background-color' : isBreak() ? '' : '#eaeaea'}, enable:isBreak(), dateTimePickerOptions:{format:'HH:mm'}, value:(('0' + breakTimeTill().getHours()).slice(-2) + ':' + ('0' + breakTimeTill().getMinutes()).slice(-2) )" class="hide_input" style="width:100%;"  type="text" placeholder="до 18.00">                                           
                 </div>
             </div>
 
