@@ -18,22 +18,22 @@ function(ko, template, utils, data, svg){
             {title: "Открытый", listIds:[3,5]}
         ],
         this.options = [
-            {_id:0, title: "РАСТЕНТОВКА-БОК", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:1, title: "РАСТЕНТОВКА-ВЕРХ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:2, title: "РАСТЕНТОВКА-ПОЛНАЯ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:3, title: ko.observable("ГИДРОБОР 4"), selected:ko.observable(false), sublist:["ГИДРОБОР 400", "ГИДРОБОР 500", "ГИДРОБОР 600", "ГИДРОБОР 700", "ГИДРОБОР 800", "ГИДРОБОР 900", "ГИДРОБОР 1000"], focused:ko.observable(false),id:Math.random().toString(36).substr(2, 9), enable:ko.observable(true), type:"text"},
+            {_id:0, title: "РАСТЕНТОВКА-БОК", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"9692c562-5fe5-11ea-a9c9-00155d8e4e03"},
+            {_id:1, title: "РАСТЕНТОВКА-ВЕРХ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"9692c563-5fe5-11ea-a9c9-00155d8e4e03"},
+            {_id:2, title: "РАСТЕНТОВКА-ПОЛНАЯ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text",guid:"a186518e-5fe5-11ea-a9c9-00155d8e4e03"},
+            {_id:3, title: ko.observable("ГИДРОБОР 4"), selected:ko.observable(false), sublist:["ГИДРОБОР 400", "ГИДРОБОР 500", "ГИДРОБОР 600", "ГИДРОБОР 700", "ГИДРОБОР 800", "ГИДРОБОР 900", "ГИДРОБОР 1000"], focused:ko.observable(false),id:Math.random().toString(36).substr(2, 9), enable:ko.observable(true), type:"text", guid:"9cebde15-25e2-11ea-a9ad-00155d8e4e05"},
             {_id:4, title: "ТЕРМОПИСЕЦ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:5, title: ko.observable("ПАНДУС 90"), selected:ko.observable(false), sublist:["ПАНДУС 90","ПАНДУС 100", "ПАНДУС 110", "ПАНДУС 120"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9), enable:ko.observable(true), type:"text"},
-            {_id:6, title: "ТЕРМОПИСЕЦ-ОНЛАЙН", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:7, title: ko.observable("РЕФ"), selected:ko.observable(false), sublist:["РЕФ КЛАСС А<br><i>(от +12°C до 0°C)</i>", "РЕФ КЛАСС B<br><i>(от +12°C до -10°C)</i>", "РЕФ КЛАСС C<br><i>(от +12°C до -20°C)</i>"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9), enable:ko.observable(true), type:"text"},
+            {_id:5, title: ko.observable("ПАНДУС 90"), selected:ko.observable(false), sublist:["ПАНДУС 90","ПАНДУС 100", "ПАНДУС 110", "ПАНДУС 120"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9), enable:ko.observable(true), type:"text", guid:"fc3de6d0-40dd-11ea-a9c6-00155d8e4e05"},
+            {_id:6, title: "ТЕРМОПИСЕЦ-ОНЛАЙН", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"b891966b-5fe5-11ea-a9c9-00155d8e4e03"},
+            {_id:7, title: ko.observable("РЕФ"), selected:ko.observable(false), sublist:["РЕФ КЛАСС А<br><i>(от +12°C до 0°C)</i>", "РЕФ КЛАСС B<br><i>(от +12°C до -10°C)</i>", "РЕФ КЛАСС C<br><i>(от +12°C до -20°C)</i>"],focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9), enable:ko.observable(true), type:"text", guid:"11a53925-52d4-11ea-a9c9-00155d8e4e03"},
 
-            {_id:8, title: "БОКОВАЯ ДВЕРЬ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:9, title: "КОННИКИ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:10, title: "РЕМНИ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:11, title: "МЕДКНИЖКА", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:12, title: "АКТ О ОБРАБОТКИ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:13, title: "СТАНДАРТ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text"},
-            {_id:14, title: "Высота", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"input", value: null}
+            {_id:8, title: "БОКОВАЯ ДВЕРЬ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"e7736c7c-5fe5-11ea-a9c9-00155d8e4e03"},
+            {_id:9, title: "КОННИКИ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"e59064a9-40df-11ea-a9c6-00155d8e4e05"},
+            {_id:10, title: "РЕМНИ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"e59064aa-40df-11ea-a9c6-00155d8e4e05"},
+            {_id:11, title: "МЕДКНИЖКА", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"9cebde1b-25e2-11ea-a9ad-00155d8e4e05"},
+            {_id:12, title: "АКТ О ОБРАБОТКИ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"9cebde18-25e2-11ea-a9ad-00155d8e4e05"},
+            {_id:13, title: "СТАНДАРТ", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"text", guid:"f61aa4e2-5fe5-11ea-a9c9-00155d8e4e03"},
+            {_id:14, title: "Высота", selected:ko.observable(false), sublist:[], enable:ko.observable(true), type:"input", value: null, guid:"d4b6a710-5fe5-11ea-a9c9-00155d8e4e03"}
         ],
         this.servicies = {
             title:"Услуги к заявке", selected:false, focused:ko.observable(false), id:Math.random().toString(36).substr(2, 9),

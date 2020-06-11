@@ -5,7 +5,7 @@ define(["ko", 'text!/templates/rate_block.html', 'utils/multiroute_driving', 'ym
         this.paymentType = ko.observable(0);
 
         (function(self){data.set_context({rate:self});})(this);
-        (function(self){ ymaps.ready(init.bind(self));})(this);
+        //(function(self){ ymaps.ready(init.bind(self));})(this);
     }
 
     ko.components.register('rate_block', {

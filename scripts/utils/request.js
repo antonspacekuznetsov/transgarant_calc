@@ -7,10 +7,7 @@ define(["jquery"], function($){
 
             $.ajax({
             type: 'POST',
-            url: '/ajax?r=order-files',
-            headers: {
-                'Authorization': 'Bearer 2ea1d8d4-d8b7-49ff-96f4-7fe4b3d91cbd',
-            },
+            url: '/controllers/ajax?r=order-files',
             data: {name:fileName, data:file},
             processData: false,
             contentType: "application/json",
@@ -22,6 +19,25 @@ define(["jquery"], function($){
                 console.log(data);
             }
             });
+        },
+
+        pack: function(data){
+            var fd = new FormData();
+            fd.append('params', JSON.stringify(data));
+            $.ajax({
+                type: 'POST',
+                url: '/controllers/ajax.php?r=pack',
+                data: fd,
+                processData: false,
+                contentType: "application/json",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+                });
         }
     };
 
