@@ -17,6 +17,8 @@ function(ko, template, data, utils, request){
               name: this.title(),
               price: this.price(),
               places: [],
+              pallets: [],
+              packages: []
             },
             body_option_id: null,
             body_option_characteristics: []
@@ -33,16 +35,16 @@ function(ko, template, data, utils, request){
                 case 0:
                     this.data.cargo.places.push({
                         size: {
-                            length: this.length(),
-                            width: this.width(),
-                            height: this.height(),
-                            weight: this.weight()
+                            length: parseFloat(this.length()),
+                            width: parseFloat(this.width()),
+                            height: parseFloat(this.height()),
+                            weight: parseFloat(this.weight())
                         }
                     });
                     
                     this.data.body_option_id = this.getBodyId();
                     this.data.body_option_characteristics = this.getBodyOptions();
-                    request.pack(this.data);
+                    request.pack(this.data, this.print);
                 break;
 
                 case 1:
@@ -51,6 +53,38 @@ function(ko, template, data, utils, request){
                 case 2:
                 break;
             }
+        },
+
+        this.clear = function(){
+
+        },
+        
+        this.print = function(data){
+            var rect = JSON.parse(data);
+            var svgRacts = '';
+            var width = 0, height = 0, zoom = 50;
+            rect.packed_items.forEach(el => {width+=el.width; height+=el.height});
+            var getZoom = function(){
+                if(width*zoom > 250 && height*zoom > 300)
+                {
+                    zoom = 50;
+                    return;
+                }
+                if(width*zoom > 250 && height*zoom > 300)
+                {
+                    --zoom;
+                    getZoom();
+                    return;
+                }
+
+            }
+            getZoom();
+            rect.packed_items.forEach(el => {svgRacts +=
+                '<g><rect x="'+el.x*zoom+'" y="'+el.y*zoom+'" width="'+el.width*zoom+'" height="'+el.height*zoom+'" stroke="white" fill="#fbbd21" stroke-width="5"/>\
+                <text x="'+(el.x*zoom+(el.width*zoom)/2)+'" y="'+(el.y*zoom+15)+'"  font-size="12" fill="red">'+el.width+'</text>\
+                </g>'});
+            $("#ractangle").html(svgRacts);
+            console.log(data);
         },
 
         this.c = function(index){

@@ -21,18 +21,15 @@ define(["jquery"], function($){
             });
         },
 
-        pack: function(data){
-            var fd = new FormData();
-            fd.append('params', JSON.stringify(data));
+        pack: function(data, fn){
             $.ajax({
                 type: 'POST',
                 url: '/controllers/ajax.php?r=pack',
-                data: fd,
-                processData: false,
-                contentType: "application/json",
-                dataType: "json",
+                data: {'params': JSON.stringify(data)},
+                processData: true,
+
                 success: function(data) {
-                    console.log(data);
+                    fn(data);
                 },
                 error: function(data) {
                     console.log(data);
